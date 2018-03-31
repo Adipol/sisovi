@@ -22,7 +22,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -32,29 +33,27 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-					<ul class="nav nav-pills">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-						<div class="dropdown-menu">
-						  <a class="dropdown-item" href="">Areas</a>
-						  <a class="dropdown-item" href="#">Buses</a>
-						  <a class="dropdown-item" href="#">Patios</a>
-						  <a class="dropdown-item" href="{{ route('users.index') }}">Usuarios</a>
-						
-						</div>
-					  </li>
+					<!-- Left Side Of Navbar -->
+					<ul class="navbar-nav mr-auto">
+							<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Registrar <span class="caret"></span></a>
+							    <div class="dropdown-menu" >
 
-					  <li class="nav-item">
-						<a class="nav-link disabled" href="#">Tickets</a>
-					  </li>
-	
-					  <li class="nav-item">
-						<a class="nav-link disabled" href="#">Tickets Archivados</a>
-					  </li>
+									<a class="dropdown-item" href="../cerulean/">Areas</a>
+									<a class="dropdown-item" href="../cosmo/">Buses</a>
+									<a class="dropdown-item" href="../cyborg/">Patios</a>
+								    <a class="dropdown-item" href="{{ route('users.index')}}">Usuarios</a>
+		
+								</div>
+							</li>
+							<li class="nav-item">
+							  <a class="nav-link" href="#">Tickets</a>
+							</li>
+							<li class="nav-item">
+							  <a class="nav-link" href="#">Tickets Archivados</a>
+							</li>
 					</ul>
-
-                    <!-- Right Side Of Navbar -->
+                   <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
