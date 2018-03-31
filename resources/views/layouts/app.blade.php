@@ -33,9 +33,26 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+					<ul class="nav nav-pills">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+						<div class="dropdown-menu">
+						  <a class="dropdown-item" href="">Areas</a>
+						  <a class="dropdown-item" href="#">Buses</a>
+						  <a class="dropdown-item" href="#">Patios</a>
+						  <a class="dropdown-item" href="{{ route('users.index') }}">Usuarios</a>
+						
+						</div>
+					  </li>
 
-                    </ul>
+					  <li class="nav-item">
+						<a class="nav-link disabled" href="#">Tickets</a>
+					  </li>
+	
+					  <li class="nav-item">
+						<a class="nav-link disabled" href="#">Tickets Archivados</a>
+					  </li>
+					</ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
