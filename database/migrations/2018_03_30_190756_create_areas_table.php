@@ -17,7 +17,7 @@ class CreateAreasTable extends Migration
 			$table->increments('id');
 			
 			$table->string('name')->unique();
-			$table->string('abbreviation')->unique();
+			$table->string('abreviation')->unique();
 
             $table->timestamps();
         });
