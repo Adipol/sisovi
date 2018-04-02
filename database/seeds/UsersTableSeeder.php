@@ -17,7 +17,9 @@ class UsersTableSeeder extends Seeder
 			'name'=>'Admin',
 			'email'=>'adipol13@gmail.com',
 			'password'=>bcrypt('siri'),
-			'rol_id'=>1
+			'rol_id'=>1,
+			'keyword'=>bcrypt('siri'),
+			'ucm'=>1
 		]);
     }
 }
