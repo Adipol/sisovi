@@ -24,3 +24,11 @@ Route::get('/areas/{id}/editar','Admin\AreaController@edit')->name('areas.edit')
 Route::post('/areas/{id}/update','Admin\AreaController@update')->name('areas.update');
 Route::get('/areas/{id}/eliminar','Admin\AreaController@delete')->name('areas.delete');
 Route::get('/areas/{id}/restaurar','Admin\AreaController@restore')->name('areas.restore');
+
+Route::get('/patios','Admin\PatioController@index')->name('patios.index');
+Route::get('/patios/crear','Admin\PatioController@create')->name('patios.create');
+Route::post('/patios/ver','Admin\PatioController@store')->name('patios.store');
+Route::get('/patios/{id}/editar','Admin\PatioController@edit')->name('patios.edit');
+Route::post('/patios/{id}/update','Admin\PatioController@update')->name('patios.update');
+Route::get('/patios/{id}/eliminar','Admin\PatioController@delete')->name('patios.delete');
+Route::get('/patios/{id}/restaurar','Admin\PatioController@restore')->name('patios.restore');

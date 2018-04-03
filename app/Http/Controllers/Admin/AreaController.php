@@ -46,7 +46,7 @@ class AreaController extends Controller
 		$area->ucm=$ucm->id;
 		$area->save();
 
-		return redirect()->route('areas.index')->with('notification','Área modificada exitosamente');
+		return redirect()->route('areas.index')->with('notification','Área modificada exitosamente.');
 	}
 
 	public function delete($id){

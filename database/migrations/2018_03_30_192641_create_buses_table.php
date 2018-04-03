@@ -22,7 +22,9 @@ class CreateBusesTable extends Migration
 			$table->integer('patios_id')->unsigned();
 			$table->foreign('patios_id')->references('id')->on('patios');
 
-            $table->timestamps();
+			$table->softDeletes();
+			$table->timestamps();
+			$table->integer('ucm')->unsigned();
         });
     }
 
