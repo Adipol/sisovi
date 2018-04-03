@@ -4,9 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserStoreRequest extends FormRequest
+
+class UserUpdateRequest extends FormRequest
 {
-    
+
     public function authorize()
     {
         return true;
@@ -14,8 +15,8 @@ class UserStoreRequest extends FormRequest
 
     public function rules(){
         return [
-				'name' => 'required|min:3|max:255|unique:users,name',
-				'email' => 'required|string|email|max:255|unique:users,email',
+				'name' => 'required|min:3|max:255|unique:users,name,'.$this->id,
+				'email' => 'required|string|email|max:255|unique:users,email,'.$this->id,
 				'password' => 'min:6',
 				'rol_id'=>'required'		
 		];

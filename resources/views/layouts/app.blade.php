@@ -42,7 +42,7 @@
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Registrar <span class="caret"></span></a>
 							    <div class="dropdown-menu" >
 
-									<a class="dropdown-item" href="../cerulean/">Areas</a>
+									<a class="dropdown-item" href="{{ route('areas.index')}}">Areas</a>
 									<a class="dropdown-item" href="../cosmo/">Buses</a>
 									<a class="dropdown-item" href="../cyborg/">Patios</a>
 								    <a class="dropdown-item" href="{{ route('users.index')}}">Usuarios</a>
@@ -96,5 +96,6 @@
 	<script src="{{ asset('assets/js/popper.min.js') }}"></script>
 	<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('assets/js/fontawesome-all.min.js') }}"></script>
+
 </body>
 </html>

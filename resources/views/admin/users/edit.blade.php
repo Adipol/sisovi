@@ -20,34 +20,29 @@
 				@endif
 
 				<div class="card-body">
-					{!! Form::open(['route'=>'users.store']) !!}
-					
+					 {!! Form::model($user,['route'=>['users.update',$user->id],'method'=>'POST'])!!}
+					 
 						<div class="form-group">
 							<label for="">Nombre</label>
-							<input type="text" name="name" class="form-control" value="{{ old('name') }}" >
+							<input type="text" name="name" class="form-control" value="{{$user->name }}" >
 						</div>
+
 						<div class="form-group">
 								<label for="">Correo Electronico</label>
-								<input type="mail" name="email" class="form-control" value="{{ old('email') }}">
+								<input type="mail" name="email" class="form-control" value="{{ $user->email }}">
 						</div>
-						<div class="form-group">
-								<label for="">Contraseña</label>
-								<input type="text" name="password" class="form-control" value={{ old('password') }} >
-						</div>
+						
 						<div class="form-group">
 								<label>Rol</label>
-
 								<select name="rol_id" class="form-control">
-								  <option value="">Seleccione rol</option>
-								  @foreach($roles as $rol)
-
-									<option value="{{ $rol->id }}">{{ $rol->name}}</option>
-								  
-									@endforeach
+					 			  @foreach($roles as $rol)
+									<option value="{{ $rol->id}}"@if($user->rol_id==$rol->id)selected @endif>{{ $rol->name}}</option>
+								  @endforeach 
 								</select>
 						</div>
+						
 						<div class="form-group">
-								<button  class="btn btn-primary"><i class="fas fa-plus-circle"></i> Registrar Usuario</button>
+								<button  class="btn btn-primary"><i class="fas fa-plus-circle"></i> Guardar cambios</button>
 						</div>
 					{!! Form::close() !!}
 				</div>

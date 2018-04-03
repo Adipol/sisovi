@@ -19,7 +19,9 @@ class CreateAreasTable extends Migration
 			$table->string('name')->unique();
 			$table->string('abreviation')->unique();
 
-            $table->timestamps();
+			$table->softDeletes();
+			$table->timestamps();
+			$table->integer('ucm')->unsigned();
         });
     }
 

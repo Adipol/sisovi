@@ -7,10 +7,10 @@
 		<div class="col-12 col-md-12 ">
 			<div class="card">
 				<div class="card-header">
-					<h2>Usuarios</h2>
+					<h2>Áreas</h2>
 				</div>
 				<div class="card-body">
-					<a href="{{ route('users.create')}}" class="btn btn-primary" style="margin-botton: 15px;"><i class="fas fa-user-plus"> </i> Crear Usuario</a>
+				     <a href="{{ route('areas.create')}}" class="btn btn-primary" style="margin-botton: 15px;"><i class="fas fa-plus-circle"></i> Crear Área</a>
 					<hr>
 					<div class="alert-custom">
 						@if (session('notification'))
@@ -29,32 +29,32 @@
 							</div>
 						@endif
 					</div>
+
 						<div class="table-responsive">  
 						<table class="table table-bordered table-hover table-striped">
 								<thead class="thead-light">
 									<tr>
 									<th style="padding-left:15px;">#</th>
-									<th><i class="fas fa-user-circle"></i> Nombre</th>
-									<th><i class="fas fa-envelope"></i> Email</th>
-									<th> Rol</th>
+									<th><i class="fab fa-adn"></i></i> Nombre</th>
+									<th><i class="fas fa-compress"></i> 
+										Abreviación</th>
 									<th width="130px">Opciones</th>
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($users as $key=>$user)
+									@foreach($areas as $key=>$area)
 										<tr>
 											<td style="padding-left:15px;">{{ $key+1 }}</td>
-											<td>{{ $user->name}}</td>
-											<td>{{ $user->email}}</td>
-											<td>{{ $user->rol->name}}</td>
+											<td>{{ $area->name}}</td>
+											<td>{{ $area->abreviation}}</td>
 											<td>
-											 @if($user->trashed())
-										    	 <a href="/usuarios/{{$user->id}}/restaurar" class="btn btn-sm btn-info" title="Restaurar">
+											 @if($area->trashed())
+										    	 <a href="{{ route('areas.restore',$area->id)}}" class="btn btn-sm btn-info" title="Restaurar">
 												 <i class="fas fa-undo"></i></a>
 											@else	
-											    <a href="{{route('users.edit',$user->id)}}" title="Editar" class="btn  btn-sm btn-success"><i class="fas fa-edit"></i></a>	
-												<a href="{{route('users.delete',$user->id)}}" title="Dar de baja" class="btn btn-sm btn-danger">
-													<i class="fas fa-trash-alt"></i>
+											    <a href="{{ route('areas.edit',$area->id)}}" title="Editar" class="btn  btn-sm btn-success"><i class="fas fa-edit"></i></a>	
+												<a href="{{ route('areas.delete',$area->id) }}" title="Dar de baja" class="btn btn-sm btn-danger">
+												<i class="fas fa-trash-alt"></i>
 												</a>
 											@endif
 											</td>
@@ -62,7 +62,7 @@
 									@endforeach
 								</tbody>
 							</table>
-							<div>	 {{ $users->render()}}</div>
+							<div>{{ $areas->render()}}</div>
 							
 						</div>
 					</div>
