@@ -19,8 +19,8 @@ class CreateBusesTable extends Migration
 			$table->string('code')->unique();
 			$table->string('license_plate')->unique();
 
-			$table->integer('patios_id')->unsigned();
-			$table->foreign('patios_id')->references('id')->on('patios');
+			$table->integer('patio_id')->unsigned();
+			$table->foreign('patio_id')->references('id')->on('patios');
 
 			$table->softDeletes();
 			$table->timestamps();

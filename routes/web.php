@@ -32,3 +32,5 @@ Route::get('/patios/{id}/editar','Admin\PatioController@edit')->name('patios.edi
 Route::post('/patios/{id}/update','Admin\PatioController@update')->name('patios.update');
 Route::get('/patios/{id}/eliminar','Admin\PatioController@delete')->name('patios.delete');
 Route::get('/patios/{id}/restaurar','Admin\PatioController@restore')->name('patios.restore');
+
+Route::get('/buses','Admin\BusController@index')->name('buses.index');

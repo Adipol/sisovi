@@ -11,7 +11,7 @@ class Bus extends Model
 	
 	protected $table="buses";
 
-	protected $fillable=['name','abreviation'];
+	protected $fillable=['code','license_plate','patio_id'];
 
 	public function patio(){
 		return $this->belongsTo('App\Patio');

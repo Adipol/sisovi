@@ -43,7 +43,7 @@
 							    <div class="dropdown-menu" >
 
 									<a class="dropdown-item" href="{{ route('areas.index') }}">Areas</a>
-									<a class="dropdown-item" href="../cosmo/">Buses</a>
+									<a class="dropdown-item" href="{{ route('buses.index')}}">Buses</a>
 									<a class="dropdown-item" href="{{ route('patios.index') }}">Patios</a>
 								    <a class="dropdown-item" href="{{ route('users.index') }}">Usuarios</a>
 		
