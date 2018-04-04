@@ -10,7 +10,7 @@
 					<h2>Buses</h2>
 				</div>
 				<div class="card-body">
-					<a href="" class="btn btn-primary" style="margin-botton: 15px;"><i class="fas fa-user-plus"> </i> Crear Usuario</a>
+					<a href="{{ route('buses.create') }}" class="btn btn-primary" style="margin-botton: 15px;"><i class="fas fa-plus-circle"></i> Crear Bus</a>
 					<hr>
 					<div class="alert-custom">
 						@if (session('notification'))
@@ -34,8 +34,8 @@
 								<thead class="thead-light">
 									<tr>
 									<th style="padding-left:15px;">#</th>
-									<th><i class="fas fa-user-circle"></i> Código</th>
-									<th><i class="fas fa-envelope"></i> Placa</th>
+									<th> Código</th>
+									<th> Placa</th>
 									<th> Patio</th>
 									<th width="130px">Opciones</th>
 									</tr>
@@ -49,11 +49,11 @@
 											<td>{{ $bus->patio->name }}</td>
 											<td>
 											 @if($bus->trashed())
-										    	 <a href="" class="btn btn-sm btn-info" title="Restaurar">
+										    	 <a href="{{ route('buses.restore',$bus->id) }}" class="btn btn-sm btn-info" title="Restaurar">
 												 <i class="fas fa-undo"></i></a>
 											@else	
-											    <a href="" title="Editar" class="btn  btn-sm btn-success"><i class="fas fa-edit"></i></a>	
-												<a href="" title="Dar de baja" class="btn btn-sm btn-danger">
+											    <a href="{{ route('buses.edit',$bus->id) }}" title="Editar" class="btn  btn-sm btn-success"><i class="fas fa-edit"></i></a>	
+												<a href="{{ route('buses.delete',$bus->id) }}" title="Dar de baja" class="btn btn-sm btn-danger">
 													<i class="fas fa-trash-alt"></i>
 												</a>
 											@endif

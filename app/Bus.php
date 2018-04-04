@@ -14,6 +14,6 @@ class Bus extends Model
 	protected $fillable=['code','license_plate','patio_id'];
 
 	public function patio(){
-		return $this->belongsTo('App\Patio');
+		return $this->belongsTo('App\Patio')->withTrashed();
 	}
 }

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
-use Illuminate\Http\RedirectResponse;
 
 use App\User;
 use App\Rol;
@@ -45,6 +44,7 @@ class UserController extends Controller
 	public function edit($id){
 		$user=User::find($id); 
 		$roles=Rol::all();
+		
 		return view('admin.users.edit')->with(compact('user','roles')); 
 	}
 	
@@ -52,11 +52,9 @@ class UserController extends Controller
 		$user=User::find($id);
 		$user->name=$request->input('name');
 		$user->email=$request->input('email');
-		
 		$user->rol_id=$request->input('rol_id')?: null;	
 		$ucm=auth()->user();
 		$user->ucm=$ucm->id;
-
 		$user->save();
 
 		return redirect()->route('users.index')->with('notification','Usuario modificado exitosamente');

@@ -39,21 +39,21 @@
 					<!-- Left Side Of Navbar -->
 					<ul class="navbar-nav mr-auto">
 							<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Registrar <span class="caret"></span></a>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="fas fa-pencil-alt"></i> Registrar<span class="caret"></span></a>
 							    <div class="dropdown-menu" >
 
-									<a class="dropdown-item" href="{{ route('areas.index') }}">Areas</a>
-									<a class="dropdown-item" href="{{ route('buses.index')}}">Buses</a>
-									<a class="dropdown-item" href="{{ route('patios.index') }}">Patios</a>
-								    <a class="dropdown-item" href="{{ route('users.index') }}">Usuarios</a>
+									<a class="dropdown-item" href="{{ route('areas.index') }}"><i class="fas fa-diagnoses"></i> Areas</a>
+									<a class="dropdown-item" href="{{ route('buses.index')}}"><i class="fas fa-bus"></i> Buses</a>
+									<a class="dropdown-item" href="{{ route('patios.index') }}"><i class="fas fa-warehouse"></i> Patios</a>
+								    <a class="dropdown-item" href="{{ route('users.index') }}"><i class="fas fa-users"></i> Usuarios</a>
 		
 								</div>
 							</li>
 							<li class="nav-item">
-							  <a class="nav-link" href="#">Tickets</a>
+							  <a class="nav-link" href="#"><i class="fas fa-ticket-alt"></i> Tickets</a>
 							</li>
 							<li class="nav-item">
-							  <a class="nav-link" href="#">Tickets Archivados</a>
+							  <a class="nav-link" href="#"><i class="fas fa-folder"></i> Tickets Archivados</a>
 							</li>
 					</ul>
                    <!-- Right Side Of Navbar -->
@@ -65,14 +65,14 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <i class="fas fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+													 <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -1,6 +1,5 @@
 <?php
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -34,3 +33,9 @@ Route::get('/patios/{id}/eliminar','Admin\PatioController@delete')->name('patios
 Route::get('/patios/{id}/restaurar','Admin\PatioController@restore')->name('patios.restore');
 
 Route::get('/buses','Admin\BusController@index')->name('buses.index');
+Route::get('/buses/create','Admin\BusController@create')->name('buses.create');
+Route::post('/buses/store','Admin\BusController@store')->name('buses.store');
+Route::get('/buses/{id}/edit','Admin\BusController@edit')->name('buses.edit');
+Route::post('/buses/{id}/update','Admin\BusController@update')->name('buses.update');
+Route::get('/buses/{id}/eliminar','Admin\BusController@delete')->name('buses.delete');
+Route::get('/buses/{id}/restaurar','Admin\BusController@restore')->name('buses.restore');
