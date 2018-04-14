@@ -50,9 +50,11 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+			'root' => storage_path('app/public'),
+			//'root' => public_path(),
             'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
+			//'url' => env('APP_URL'),
+			'visibility' => 'public',
         ],
 
         's3' => [
@@ -62,7 +64,14 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
-        ],
+		],
+		
+		'ftp' => [
+            'driver' => 'ftp',
+			'host' => '192.168.1.2',
+            'username' => 'enjaulado',
+            'password' => '123',
+   		],
 
     ],
 

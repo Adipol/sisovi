@@ -39,3 +39,9 @@ Route::get('/buses/{id}/edit','Admin\BusController@edit')->name('buses.edit');
 Route::post('/buses/{id}/update','Admin\BusController@update')->name('buses.update');
 Route::get('/buses/{id}/eliminar','Admin\BusController@delete')->name('buses.delete');
 Route::get('/buses/{id}/restaurar','Admin\BusController@restore')->name('buses.restore');
+
+Route::get('/tickets','Ticket\TicketController@index')->name('tickets.index');
+Route::get('/tickets/create','Ticket\TicketController@create')->name('tickets.create');
+Route::post('/tickets/store','Ticket\TicketController@store')->name('tickets.store');
+Route::get('/tickets/{id}/editar','Ticket\TicketController@edit')->name('tickets.edit');
+Route::post('/tickets/{id}/update','Ticket\TicketController@update')->name('tickets.update');

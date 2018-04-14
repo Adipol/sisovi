@@ -50,7 +50,7 @@
 								</div>
 							</li>
 							<li class="nav-item">
-							  <a class="nav-link" href="#"><i class="fas fa-ticket-alt"></i> Tickets</a>
+							  <a class="nav-link" href="{{ route('tickets.index')}}"><i class="fas fa-ticket-alt"></i> Tickets</a>
 							</li>
 							<li class="nav-item">
 							  <a class="nav-link" href="#"><i class="fas fa-folder"></i> Tickets Archivados</a>
@@ -96,6 +96,6 @@
 	<script src="{{ asset('assets/js/popper.min.js') }}"></script>
 	<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('assets/js/fontawesome-all.min.js') }}"></script>
-
+	@yield('scripts')
 </body>
 </html>

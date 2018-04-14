@@ -46,7 +46,7 @@
 										<tr>
 											<td style="padding-left:15px;">{{ $key+1 }}</td>
 											<td>{{ $area->name}}</td>
-											<td>{{ $area->abreviation}}</td>
+											<td>{{ $area->abreviation }}</td>
 											<td>
 											 @if($area->trashed())
 										    	 <a href="{{ route('areas.restore',$area->id)}}" class="btn btn-sm btn-info" title="Restaurar">
