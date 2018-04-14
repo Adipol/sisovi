@@ -20,7 +20,7 @@
 				@endif
 
 				<div class="card-body" >
-					{!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST','files'=>true,'id'=>'uploadForm'])!!}
+					{!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST','files'=>true,'id'=>'formData'])!!}
 
 			
 
@@ -78,19 +78,19 @@
 						<div class="form-group">
 							 <label for="">Subir archivo</label>
 							 
-							<input type="file" name="uploadFile" id="uploadFile">
+							<input type="file" name="file" id="uploadFile">
 							<hr>
-
 							<div class="progress">
-									<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+									<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+									  0%
 									</div>
-								</div>
-							<div id="targetLayer"></div>
+							</div>
+								<div id="targetLayer"></div>
 							<hr>
 						</div>
 
 						<div class="form-group">
-								<input type="submit" id="uploadSubmit" value="Cargar" class="btn btn-primary">
+								<input type="submit" value="Cargar" class="btn btn-primary">
 								<button class="btn btn-default" type="reset">Reset</button>
 						</div>
 						
@@ -106,31 +106,48 @@
 @section('scripts')
 <script>
 
-   $(document).ready(function(){
-	   $('#uploadForm').submit(function(e){
-		   if($('#uploadFile').val()){
-			   e.preventDefault()
-			   $('#loader-icon').show()
-			   $(this).ajaxSubmit({
-				   target: "#targetLayer",
-				   beforeSubmit:function(){
-					   $('.progress-bar').width('0%')
-				   },
-				   uploadProgress: function(event, position, total, percentComplete){
-					   $(".progress-bar").width(percentComplete+'%')
-					   $(".progress-bar").html('<div id="progress-status">'+percentComplete+' %</div>')
-				   },
-				   success:function(){
-					   $('#loader-icon').hide()
-				   },
-				   resetForm:true
-			   })
-			   return false
-		   }
-	   })
-   })
+$(document).ready(function() {
+
+$('#formData').on('submit', function(event) {
+
+	event.preventDefault();
+
+	var formData = new FormData($('#formData')[0]);
+
+	$.ajax({
+		xhr : function() {
+			var xhr = new window.XMLHttpRequest();
+
+			xhr.upload.addEventListener('progress', function(e) {
+
+				if (e.lengthComputable) {
+
+					console.log('Bytes Loaded: ' + e.loaded);
+					console.log('Total Size: ' + e.total);
+					console.log('Percentage Uploaded: ' + (e.loaded / e.total))
+
+					var percent = Math.round((e.loaded / e.total) * 100);
+
+					$('#progressBar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
+
+				}
+
+			});
+
+			return xhr;
+		},
+		type : 'POST',
+		url : '/tickets',
+		data : formData,
+		processData : false,
+		contentType : false,
+	});
+
+});
+
+});
 
 </script>
 @endsection
 
-@endsection
+@endsection()
