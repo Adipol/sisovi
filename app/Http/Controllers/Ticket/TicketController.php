@@ -84,18 +84,18 @@ class TicketController extends Controller
 	 }
 	 public function update(TicketUpdateRequest $request, $id){
 		$ticket=Ticket::find($id);
+		$cod_name=$request->input('cod_name');
+		
 
-		//if($request->file('file')){
+		if($request->hasfile('file')){
 			$file=$request->file('file');
-			//$path=Storage::disk('ftp')->put('videos',$request->file('file'));
-			$path=Storage::disk('ftp')->put('videos', $file);
-			//$path=Storage::disk('ftp')->put($file, fopen($request->file('file'), 'r+'));
-			//dd ($path);
-	 
-			//$filename = 'profile-photo-' . time() . '.' . $file->getClientOriginalExtension();
-			//dd ($filename);
-			$ticket->file=$path;
-		//}
+			$filenamewithextension = $request->file('file')->getClientOriginalName();
+			$filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+			$extension = $request->file('file')->getClientOriginalExtension();
+			$filenametostore = $cod_name .'_'.time().'.'. $extension;
+			Storage::disk('ftp')->put($filenametostore, fopen($request->file('file'), 'r+'));
+			$ticket->file=$filenametostore;
+		}
 
 		$ticket->operational_obs=$request->input('operational_obs');
 		$ticket->save();

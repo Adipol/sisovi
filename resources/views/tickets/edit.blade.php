@@ -20,9 +20,7 @@
 				@endif
 
 				<div class="card-body" >
-					{!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST','files'=>true,'id'=>'formData'])!!}
-
-			
+		  		{!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST','files'=>true])!!}
 
 					<div class="form-group">
 						<label for="">Codigo de Ticket</label>
@@ -72,30 +70,28 @@
 
 						<div class="form-group">
 							<label for="">Observaciones</label>
-							<textarea name="operational_obs" class="form-control">{{ old('operational_obs') }}</textarea>
+							<textarea name="operational_obs" class="form-control" id="operational_obs">{{ old('operational_obs') }}</textarea>
 						</div>
 
 						<div class="form-group">
 							 <label for="">Subir archivo</label>
 							 
-							<input type="file" name="file" id="uploadFile">
+							<input type="file" name="file" id="media"  class="form-control">
 							<hr>
 							<div class="progress">
-									<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-									  0%
-									</div>
+								<div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								  0%
+								</div>
 							</div>
-								<div id="targetLayer"></div>
 							<hr>
 						</div>
 
 						<div class="form-group">
-								<input type="submit" value="Cargar" class="btn btn-primary">
+							<button class="btn btn-primary" type="submit">Cargar</button>
 								<button class="btn btn-default" type="reset">Reset</button>
 						</div>
 						
 					{!! Form::close() !!}
-					<div id="loader-icon" style="display:none"><img src="/images/LoaderIcon.gif">  </div>
 				</div>
 			</div>
 		</div>
@@ -104,15 +100,18 @@
 
 
 @section('scripts')
-<script>
+{{-- <script>
+/* $(document).ready(function() {
 
-$(document).ready(function() {
-
-$('#formData').on('submit', function(event) {
+$('#form').on('submit', function(event) {
 
 	event.preventDefault();
 
-	var formData = new FormData($('#formData')[0]);
+	var formData = new FormData($('#form')[0]);
+	
+    var  MyItem_id= $('#ticket_id').val();;
+
+	var token = $('input[name=_token]').val();
 
 	$.ajax({
 		xhr : function() {
@@ -129,25 +128,30 @@ $('#formData').on('submit', function(event) {
 					var percent = Math.round((e.loaded / e.total) * 100);
 
 					$('#progressBar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
-
 				}
 
-			});
+			},false);
 
 			return xhr;
 		},
+	
 		type : 'POST',
-		url : '/tickets',
+		url: '/tickets/'+MyItem_id+'/upload', 
+		headers: {'X-CSRF-TOKEN':token}, 
 		data : formData,
+		//dataType : 'json', 
 		processData : false,
 		contentType : false,
+		success: function (data) { 
+			alert('Record updated successfully');
+			 },
+
 	});
 
 });
 
-});
-
-</script>
+}); */
+</script> --}}
 @endsection
 
-@endsection()
+@endsection
