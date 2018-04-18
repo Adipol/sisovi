@@ -45,3 +45,4 @@ Route::get('/tickets/create','Ticket\TicketController@create')->name('tickets.cr
 Route::post('/tickets/store','Ticket\TicketController@store')->name('tickets.store');
 Route::get('/tickets/{id}/editar','Ticket\TicketController@edit')->name('tickets.edit');
 Route::post('/tickets/{id}/update','Ticket\TicketController@update')->name('tickets.update');
+Route::get('/tickets/{file}/download','Ticket\TicketController@download')->name('tickets.download');

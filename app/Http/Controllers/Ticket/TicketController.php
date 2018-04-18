@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TicketStoreRequest;
 use App\Http\Requests\TicketUpdateRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 //use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Ticket;
 use App\Level;
@@ -26,9 +27,9 @@ class TicketController extends Controller
 		->join('levels','tickets.level_id','=','levels.id')
 		->join('codes','tickets.code_id','=','codes.id')
 		->join('users','tickets.applicant_id','=','users.id')
-		->select('tickets.id','tickets.code_area','levels.name as level_name','users.name as applicant_name','patios.name as patio_name','tickets.incident_date','codes.name as code_name','tickets.created_at','tickets.code_id')
+		->select('tickets.id','tickets.code_area','levels.name as level_name','users.name as applicant_name','patios.name as patio_name','tickets.incident_date','codes.name as code_name','tickets.created_at','tickets.code_id','tickets.file')
 		->paginate(10);
-
+		//dd($tickets);
 		return view('tickets.index')->with(compact('tickets')); 
 	 }
 
@@ -82,6 +83,7 @@ class TicketController extends Controller
 		//dd($ticket);
 		return view('tickets.edit')->with(compact('ticket'));
 	 }
+
 	 public function update(TicketUpdateRequest $request, $id){
 		$ticket=Ticket::find($id);
 		$cod_name=$request->input('cod_name');
@@ -102,4 +104,29 @@ class TicketController extends Controller
 
 		return redirect()->route('tickets.index')->with('notification','archivo ingresado exitosamente.');
 	 }
+
+	 public function download(Request $request, $file){
+		
+		if(!$file) {
+            return Response::json('please provide valid path', 400);
+         } 
+		$fileName = basename($file);
+		
+        $ftp = Storage::createFtpDriver([
+                        'host'     => '192.168.1.2',
+                        'username' => 'enjaulado',
+                        'password' => '123',
+						'port'     => '21', // your ftp port
+						'timeout'  => '30', // timeout setting 
+                         
+		  ]);
+			
+		  $filecontent = $ftp->get($file); // read file content 
+		  // download file.
+		  return Response::make($filecontent, '200', array(
+			   'Content-Type' => 'application/octet-stream',
+			   'Content-Disposition' => 'attachment; filename="'.$fileName.'"'
+		   ));
+
+	 } 
 }

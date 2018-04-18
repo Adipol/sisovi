@@ -15,7 +15,7 @@ class TicketUpdateRequest extends FormRequest
     {
         return [
 			'operational_obs'=>'required|min:15',
-			'file'=>'required'
+			'file'=>'required|mimes:rar,zip'
         ];
 	}
 	
@@ -24,7 +24,7 @@ class TicketUpdateRequest extends FormRequest
 		 	'operational_obs.required'=>'Es necesario ingresar observaciones del incidente.',
 			'operational_obs.min'=>'Observacion reducida.',
 			'file.required'=>'Ingresar archivo.',
-			//'file.in'=>'Formato de archivo incorrecto.'
+			'file.mimes'=>'El archivo debe tener extension rar,zip.'
 		];
 	}
 }

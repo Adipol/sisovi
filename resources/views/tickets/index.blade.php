@@ -73,7 +73,7 @@
 											<td>{{ $ticket->code_name }}</td>
 											<td>
 											    <a href="{{ route('tickets.edit',$ticket->id) }}" title="Subir archivo" class="btn  btn-sm btn-success"><i class="fas fa-upload"></i></a>	
-												<a href="" title="Descargar archivo" class="btn btn-sm  btn-warning">
+												<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-warning">
 													<i class="fas fa-download"></i>
 												</a>
 								
