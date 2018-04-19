@@ -35,27 +35,29 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<!-- Left Side Of Navbar -->
-				@if(auth()->check())
+				
 					<ul class="navbar-nav mr-auto">	
+					@if(auth()->check())
+						@if(auth()->user()->is_admin)
 							<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="fas fa-pencil-alt"></i> Registrar<span class="caret"></span></a>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-pencil-alt"></i> Registrar<span class="caret"></span></a>
 							    <div class="dropdown-menu" >
-
 									<a class="dropdown-item" href="{{ route('areas.index') }}"><i class="fas fa-diagnoses"></i> Areas</a>
 									<a class="dropdown-item" href="{{ route('buses.index')}}"><i class="fas fa-bus"></i> Buses</a>
 									<a class="dropdown-item" href="{{ route('patios.index') }}"><i class="fas fa-warehouse"></i> Patios</a>
 								    <a class="dropdown-item" href="{{ route('users.index') }}"><i class="fas fa-users"></i> Usuarios</a>
-		
 								</div>
 							</li>
+						@endif	
 							<li class="nav-item">
 							  <a class="nav-link" href="{{ route('tickets.index')}}"><i class="fas fa-ticket-alt"></i> Tickets</a>
 							</li>
 							<li class="nav-item">
 							  <a class="nav-link" href="#"><i class="fas fa-folder"></i> Tickets Archivados</a>
-							</li>	
-					</ul>
+							</li>
 					@endif
+					</ul>
+					
                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
 			$table->string('keyword');
 			
 			$table->integer('rol_id')->unsigned();
-			$table->foreign('rol_id')->references('id')->on('roles');
+			$table->foreign('rol_id')->references('id')->on('roles'); //1:administrador|2:solicitante|3:operacional
 
 			$table->rememberToken();
 			$table->softDeletes();

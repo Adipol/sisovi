@@ -1,12 +1,12 @@
 <?php
 
-Route::redirect('/','home');
+Route::redirect('/','tickets');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware'=>'auth','namespace'=>'Admin'],function(){
+Route::group(['middleware' => 'admin','namespace'=>'Admin'], function () {   
 	Route::get('/usuarios','UserController@index')->name('users.index');
 	Route::get('/usuarios/create','UserController@create')->name('users.create');
 	Route::post('/usuarios/store','UserController@store')->name('users.store');
