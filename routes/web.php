@@ -1,44 +1,45 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/','home');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/usuarios','Admin\UserController@index')->name('users.index');
-Route::get('/usuarios/create','Admin\UserController@create')->name('users.create');
-Route::post('/usuarios/store','Admin\UserController@store')->name('users.store');
-Route::get('/usuarios/{id}/edit','Admin\UserController@edit')->name('users.edit');
-Route::post('/usuarios/{id}/update','Admin\UserController@update')->name('users.update');
-Route::get('/usuarios/{id}/eliminar','Admin\UserController@delete')->name('users.delete');
-Route::get('/usuarios/{id}/restaurar','Admin\UserController@restore')->name('users.restore');
+Route::group(['middleware'=>'auth','namespace'=>'Admin'],function(){
+	Route::get('/usuarios','UserController@index')->name('users.index');
+	Route::get('/usuarios/create','UserController@create')->name('users.create');
+	Route::post('/usuarios/store','UserController@store')->name('users.store');
+	Route::get('/usuarios/{id}/edit','UserController@edit')->name('users.edit');
+	Route::post('/usuarios/{id}/update','UserController@update')->name('users.update');
+	Route::get('/usuarios/{id}/eliminar','UserController@delete')->name('users.delete');
+	Route::get('/usuarios/{id}/restaurar','UserController@restore')->name('users.restore');
+	
+	Route::get('/areas','AreaController@index')->name('areas.index');
+	Route::get('/areas/crear','AreaController@create')->name('areas.create');
+	Route::post('/areas/ver','AreaController@store')->name('areas.store');
+	Route::get('/areas/{id}/editar','AreaController@edit')->name('areas.edit');
+	Route::post('/areas/{id}/update','AreaController@update')->name('areas.update');
+	Route::get('/areas/{id}/eliminar','AreaController@delete')->name('areas.delete');
+	Route::get('/areas/{id}/restaurar','AreaController@restore')->name('areas.restore');
+	
+	Route::get('/patios','PatioController@index')->name('patios.index');
+	Route::get('/patios/crear','PatioController@create')->name('patios.create');
+	Route::post('/patios/ver','PatioController@store')->name('patios.store');
+	Route::get('/patios/{id}/editar','PatioController@edit')->name('patios.edit');
+	Route::post('/patios/{id}/update','PatioController@update')->name('patios.update');
+	Route::get('/patios/{id}/eliminar','PatioController@delete')->name('patios.delete');
+	Route::get('/patios/{id}/restaurar','PatioController@restore')->name('patios.restore');
+	
+	Route::get('/buses','BusController@index')->name('buses.index');
+	Route::get('/buses/create','BusController@create')->name('buses.create');
+	Route::post('/buses/store','BusController@store')->name('buses.store');
+	Route::get('/buses/{id}/edit','BusController@edit')->name('buses.edit');
+	Route::post('/buses/{id}/update','BusController@update')->name('buses.update');
+	Route::get('/buses/{id}/eliminar','BusController@delete')->name('buses.delete');
+	Route::get('/buses/{id}/restaurar','BusController@restore')->name('buses.restore');
+});
 
-Route::get('/areas','Admin\AreaController@index')->name('areas.index');
-Route::get('/areas/crear','Admin\AreaController@create')->name('areas.create');
-Route::post('/areas/ver','Admin\AreaController@store')->name('areas.store');
-Route::get('/areas/{id}/editar','Admin\AreaController@edit')->name('areas.edit');
-Route::post('/areas/{id}/update','Admin\AreaController@update')->name('areas.update');
-Route::get('/areas/{id}/eliminar','Admin\AreaController@delete')->name('areas.delete');
-Route::get('/areas/{id}/restaurar','Admin\AreaController@restore')->name('areas.restore');
-
-Route::get('/patios','Admin\PatioController@index')->name('patios.index');
-Route::get('/patios/crear','Admin\PatioController@create')->name('patios.create');
-Route::post('/patios/ver','Admin\PatioController@store')->name('patios.store');
-Route::get('/patios/{id}/editar','Admin\PatioController@edit')->name('patios.edit');
-Route::post('/patios/{id}/update','Admin\PatioController@update')->name('patios.update');
-Route::get('/patios/{id}/eliminar','Admin\PatioController@delete')->name('patios.delete');
-Route::get('/patios/{id}/restaurar','Admin\PatioController@restore')->name('patios.restore');
-
-Route::get('/buses','Admin\BusController@index')->name('buses.index');
-Route::get('/buses/create','Admin\BusController@create')->name('buses.create');
-Route::post('/buses/store','Admin\BusController@store')->name('buses.store');
-Route::get('/buses/{id}/edit','Admin\BusController@edit')->name('buses.edit');
-Route::post('/buses/{id}/update','Admin\BusController@update')->name('buses.update');
-Route::get('/buses/{id}/eliminar','Admin\BusController@delete')->name('buses.delete');
-Route::get('/buses/{id}/restaurar','Admin\BusController@restore')->name('buses.restore');
 
 Route::get('/tickets','Ticket\TicketController@index')->name('tickets.index');
 Route::get('/tickets/create','Ticket\TicketController@create')->name('tickets.create');

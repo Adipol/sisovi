@@ -12,10 +12,6 @@ use App\Patio;
 
 class BusController extends Controller
 {
-	public function __construct(){
-		$this->middleware('auth');
-	}
-	
     public function index(){
 		$buses=Bus::withTrashed()->orderBy('code','ASC')->with('patio')->paginate(10);
 		return view('admin.buses.index')->with(compact('buses'));
