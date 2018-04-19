@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>reCAPTCHA</title>
+<style type="text/css">
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCRc4EsA.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfABc4EsA.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCBc4EsA.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBxc4EsA.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCxc4EsA.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfChc4EsA.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+</style>
+<link rel="stylesheet" type="text/css" href="bframe_data_007/styles__ltr.css">
+
+<script type="text/javascript" src="recaptcha__es.js" nonce="t6eOsqmqFPfpvBUHg/QKew4GQ0U">
+      
+    </script><script type="text/javascript" charset="UTF-8" src="bframe_data_007/A9Tt4OJpCMxMljHOw24nUxg4DRCLYg1CDwnEiN98zXY.js"></script></head>
+<body><input id="recaptcha-token" value="03AJIzXZ6QhvI0a30dyuevwL370D6l4tmZ6o4NXjYRORkKPnifFARtNqD9n8dte8vYCzd0keOXFH9V-qWyRcq3rXY8vBOkFPdCPYlsHvROE9LYbdI5y7xoN--7YW20c0zRElE38A-tsXBxxTiG4C4_Vn8uaHP-OuW9QIPMRu0NdJOkrRMraoPzXKoXsZR81OBjWk_GRVKMdEJ75oe4iQLDvl8tV5qPIQLLs-wbJVZaC-scCa4XBr1hIrTqj4ZBI9js5DZRA_MRm_RHwA-Y7Nk7mmXLqJED4hs9_wviphntB6u30HOsbLTbh_b8RcND_mqMJjTZv0WnQDva4fMynvEjUZ0c78bxaGmRHutr8WAcL3_nE30h0IN1edlBNNrIzE0PW-LynqZOBih2myJ2HlxqiFgVdAKylx49dMVRIQKXK6Xf6R19Fd_nR4MwYe65054mPKuyuhCJwBM_so3DqL1bXpYZEvbs9Iz5df23uGYr2DZpXkSZYDGlyMheM4-SrIOwQV6Xwtjj7_a5-8wqfU5IA41t3Vdz7vR_b6BTqgT-WbkJT66duMRpcxINvvJn_s3WtSAlgqibnM3HUQgXRfmrrtzsR15BWb4JmRVR6r0thPuU_RwDxY-p-x7qvZ6ymv6oPrWvEjh6lsR76ZWp16688ja04SzVlvyihPaczyd6O2Nv9XaouNaPvz0Q6Rq9WkpOm0xPO9m1Qrcvvq50y3_sx6VdmRgen7GowRn-N5KqU4oFiiXJiM0f67bvf6LXjSpvw5wRfSySOHWQhFd8XlVqoeQAx6U5SWjIMe4QH7fIp-xqdwY_vCDp10r1irTpJuHJbgqmR3mR5CqzepC5iJjuj_SsKdjHwmOCDkkw5WOfsSHzNsC1291wE0bJIGl0KOIXMjGNPcpD3MhfKgdUOso5RQw0Rwtd5WNLo6rCTZwiKjA85Zg3SfZKYWzcjii8-oWfD8lqYHH0wGWrOiUs8_yJBo5cZNX8WGPoymEfBQRQ4vJeXPI9tMdpiHtbiOIBuXZmYWG5cjFC-6zFIp3slcW9Ytvp4Dxqxd0PyjR69-mV-BZ2XXXTs1_sp50CkRO0Cy-MqPnEAr1bRUo9zjKAuDCxcpyjrX0g8-iJqlk5pxVgVEGAlZr1MWPVpNoHzQ2PNY7yGzoMRQPVqe0gKLpFeFVuGig5Nqgx6GUFl1ldd7lAtmC8UaVRDXHuB715pVtQKgk8GLQ9N6KGbAvtNrOy-c9eFG5Mi8BUZG1hFiQ2bateirJ1_y7YiEzQWpZVGyFJUvPvhhR0If5xcT9_0ZfMCd1sL2Hm9ht8i8EVk2Uk1Z_3NXoPn6PWPWWSFDLrn37h3BNfK87f5ktq39U0H45im0K8LFuZkeCUEh-qgmkrTnhDtB53wH3wqFTUgC81UVk6ldw7FmcYT52zcVjFr3E70Nc0j_o5vqPYRjLuw_OX3RHDWANVY72zA-zHseHxIVSNBTUQxyKghlFMvafEPxodFONjyn3S9wdTg2hx5P8j0GixSvt8S9KGkhsBKfWYMKUgIhzt8LC1Z6N3oIO6RUjzbxEnOJ5oV_09j_eYyaIkRfpT40kdlLAKm76ApB_xRfvh2huoAYZkUao9Md_LCFXN6SJ0HEso7CYqfA7LPQkFUjlmVTzKGgwSMJzmny7mNUC1pk1FTmPQmQjZkbfkPwhfqgSHwOzu4LQxRMTMZAHNNcdpVAn62sqxRVPRzpC4vkkhQI0FvGydFqtg6L-WbFYHGf_8iV5tRpoozVnmwhiF_J3Tl4Vhklwq37Fy8Y3OIrpkSw5r6eef4FVOIWHZb5sJ4eIjyuZpgekNpFZq87jB1IfAP2yGyXMCqolX96SfQVLS7nUybo4GFUiyBFSqzr6QGnlACKdTfT4dC1IsRPlX9Sy3EKMaBik9DTwzwzbyMECCr84wBqz-FG0L91jaN3D5W7KHlXrb4GTqter2k4FPVCrQC4jo4NM1HwwLkQ1Ng6sRlEi78Mx2TFpdVe8GvrYI9FVU94IZ2CQ7bFl5azGbqIZRvkxN6o9HREAdsf1zY18iA8MjidFcNrlQH7lT4e5uY_MImZtYJpJkMURtzvH3jUhSWHK8wOF44RqFDee0wWsR1XwS0SH7m8vA-ATPs3Wc7e8QM0665_MmkbkkuruYsQtjpUK6rO1s8X0Byu-4LzhHIZ_EP2UeEhCT3LxEwiqAmEs5ZcyA0W3gh4cJ23ji24M9MPuxBC0bGzZWsVPsgOcKFGrbE422TmABxNGj30RVxP-90nE7RYPujri1_TET8pLPnAfcKkMP5HzLpII-9ZIe7Ps1UlXhpTTyyu4oxJe6AYpHMyqx9_qXyeB2ZrvtO99mrnTh3DAtGtRSB8wNFS7D3fzDnjps9dnAUtmfBO3c9DDm-KMg6jPVOb4BDWT3UwgMk1ACfyzLKUgSobc8a_ac19ju4_YzIap89KUI3DgXsZTCeOgQV5r5zwBv34RZUAnQLFNN5vOu8P7rIWO9Civhz1mBtAECQ084Qkk8F1zRhabrsa2JmtquaSg9ZS-aDha1ONT4K7AxsjHbd0fpiMlJrWj0vBnOqgzGVsmqbAR87lTofBBC6lml6yIBdzGPumg5RvKYFRXe-N1Il4aJ2XRiOxDY5wi6Z1Lnjugmn5fvz8qRAMerQUF345LUIkxrnDgObzP8gpvVuWWGGXaCb_iLqnBAHGS8muTQMUPl" type="hidden">
+<script type="text/javascript" nonce="t6eOsqmqFPfpvBUHg/QKew4GQ0U">
+      
+        recaptcha.frame.Main.init("[\x22finput\x22,null,[\x22conf\x22,null,\x226LdnLyIUAAAAAOiGPtddh-g3KiJRoDGGPD-6dqXo\x22,0,null,[\x22JS_FASTCLICK\x22,\x22JS_BFRAME\x22,\x22JS_MC_FETCH\x22]\n,0.75]\n]\n");
+      
+    </script><div style=""><div id="rc-imageselect"><div class="rc-imageselect-response-field"></div><span class="rc-imageselect-tabloop-begin" tabindex="0"></span><div class="rc-imageselect-payload"><div class="rc-imageselect-instructions"><div class="rc-imageselect-desc-wrapper"><div class="rc-imageselect-desc-no-canonical" style="width: 352px; font-size: 12px;">Selecciona todas las imágenes que contengan <strong style="font-size: 28px;">carreteras</strong><span style="font-size: 14px;">Haz clic en Verificar cuando no quede ninguna.</span></div></div><div class="rc-imageselect-progress"></div></div><div class="rc-imageselect-challenge"><div id="rc-imageselect-target" class="rc-imageselect-target" dir="ltr" role="presentation" aria-hidden="true"><table class="rc-imageselect-table-33"><tbody><tr><td role="button" tabindex="0" class="rc-imageselect-tile"><div class="rc-image-tile-target"><div class="rc-image-tile-wrapper" style="width: 126px; height: 126px"><img class="rc-image-tile-33" src="bframe_data_005/payload.jpeg" style="top:0%; left: 0%"><div class="rc-image-tile-overlay"></div></div><div class="rc-imageselect-checkbox"></div></div></td><td role="button" tabindex="0" class="rc-imageselect-tile"><div class="rc-image-tile-target"><div class="rc-image-tile-wrapper" style="width: 126px; height: 126px"><img class="rc-image-tile-33" src="bframe_data_005/payload.jpeg" style="top:0%; left: -100%"><div class="rc-image-tile-overlay"></div></div><div class="rc-imageselect-checkbox"></div></div></td><td role="button" tabindex="0" class="rc-imageselect-tile"><div class="rc-image-tile-target"><div class="rc-image-tile-wrapper" style="width: 126px; height: 126px"><img class="rc-image-tile-33" src="bframe_data_005/payload.jpeg" style="top:0%; left: -200%"><div class="rc-image-tile-overlay"></div></div><div class="rc-imageselect-checkbox"></div></div></td></tr><tr><td role="button" tabindex="0" class="rc-imageselect-tile"><div class="rc-image-tile-target"><div class="rc-image-tile-wrapper" style="width: 126px; height: 126px"><img class="rc-image-tile-33" src="bframe_data_005/payload.jpeg" style="top:-100%; left: 0%"><div class="rc-image-tile-overlay"></div></div><div class="rc-imageselect-checkbox"></div></div></td><td role="button" tabindex="0" class="rc-imageselect-tile"><div class="rc-image-tile-target"><div class="rc-image-tile-wrapper" style="width: 126px; height: 126px"><img class="rc-image-tile-33" src="bframe_data_005/payload.jpeg" style="top:-100%; left: -100%"><div class="rc-image-tile-overlay"></div></div><div class="rc-imageselect-checkbox"></div></div></td><td role="button" tabindex="0" class="rc-imageselect-tile"><div class="rc-image-tile-target"><div class="rc-image-tile-wrapper" style="width: 126px; height: 126px"><img class="rc-image-tile-33" src="bframe_data_005/payload.jpeg" style="top:-100%; left: -200%"><div class="rc-image-tile-overlay"></div></div><div class="rc-imageselect-checkbox"></div></div></td></tr><tr><td role="button" tabindex="0" class="rc-imageselect-tile"><div class="rc-image-tile-target"><div class="rc-image-tile-wrapper" style="width: 126px; height: 126px"><img class="rc-image-tile-33" src="bframe_data_005/payload.jpeg" style="top:-200%; left: 0%"><div class="rc-image-tile-overlay"></div></div><div class="rc-imageselect-checkbox"></div></div></td><td role="button" tabindex="0" class="rc-imageselect-tile"><div class="rc-image-tile-target"><div class="rc-image-tile-wrapper" style="width: 126px; height: 126px"><img class="rc-image-tile-33" src="bframe_data_005/payload.jpeg" style="top:-200%; left: -100%"><div class="rc-image-tile-overlay"></div></div><div class="rc-imageselect-checkbox"></div></div></td><td role="button" tabindex="0" class="rc-imageselect-tile"><div class="rc-image-tile-target"><div class="rc-image-tile-wrapper" style="width: 126px; height: 126px"><img class="rc-image-tile-33" src="bframe_data_005/payload.jpeg" style="top:-200%; left: -200%"><div class="rc-image-tile-overlay"></div></div><div class="rc-imageselect-checkbox"></div></div></td></tr></tbody></table></div></div><div class="rc-imageselect-incorrect-response" style="display:none">Inténtalo de nuevo.</div><div class="rc-imageselect-error-select-more" style="display:none">Selecciona todas las imágenes que coincidan.</div><div class="rc-imageselect-error-dynamic-more" style="display:none">Comprueba también las imágenes nuevas.</div><div class="rc-imageselect-error-select-something" style="display:none">Realiza una selección alrededor del objeto o vuelve a cargarlo si no hay ninguno.</div></div><div class="rc-footer"><div class="rc-separator"></div><div class="rc-controls"><div class="primary-controls"><div class="rc-buttons"><div class="button-holder reload-button-holder"><button class="rc-button goog-inline-block rc-button-reload" title="Obtener una nueva pista" value="" id="recaptcha-reload-button" tabindex="0"></button></div><div class="button-holder audio-button-holder"><button class="rc-button goog-inline-block rc-button-audio" title="Obtener una pista sonora" value="" id="recaptcha-audio-button" tabindex="0"></button></div><div class="button-holder image-button-holder"><button class="rc-button goog-inline-block rc-button-image" title="Obtener una pista visual" value="" style="display: none;" id="recaptcha-image-button" tabindex="0"></button></div><div class="button-holder help-button-holder"><button class="rc-button goog-inline-block rc-button-help" title="Ayuda" value="" id="recaptcha-help-button" tabindex="0"></button></div><div class="button-holder undo-button-holder"><button class="rc-button goog-inline-block rc-button-undo" title="Deshacer" value="" style="display: none;" id="recaptcha-undo-button" tabindex="0"></button></div></div><div class="verify-button-holder"><button class="rc-button-default goog-inline-block" title="" value="" id="recaptcha-verify-button" tabindex="0">Verificar</button></div></div><div class="rc-challenge-help" style="display:none" tabindex="0"></div></div></div><span class="rc-imageselect-tabloop-end" tabindex="0"></span></div></div></body></html>
