@@ -26,4 +26,8 @@ class User extends Authenticatable
 	public function getIsAdminAttribute(){
 		return $this->rol_id==1;
 	}
+
+	public function getIsSolAttribute(){
+		return $this->rol_id==2;
+	}
 }

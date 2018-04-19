@@ -22,7 +22,7 @@ class CreateTicketsTable extends Migration
 
 			$table->text('applicant_obs');// obs solicitante
 			$table->text('operational_obs')->nullable();//obs operacional
-			$table->string('file')->nullable();
+			$table->string('file')->default('/');
 			$table->integer('patio');
 			$table->string('area');
 

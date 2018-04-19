@@ -10,7 +10,9 @@
 					<h2>Tickets</h2>
 				</div>
 				<div class="card-body">
-				     <a href="{{ route('tickets.create') }}" class="btn btn-primary" style="margin-botton: 15px;"><i class="fas fa-plus-circle"></i> Crear Ticket</a>
+					@if(auth()->user()->is_sol)
+					 <a href="{{ route('tickets.create') }}" class="btn btn-primary" style="margin-botton: 15px;"><i class="fas fa-plus-circle"></i> Crear Ticket</a>
+					 @endif
 					<hr>
 					<div class="alert-custom">
 						@if (session('notification'))
@@ -20,7 +22,7 @@
 						@endif
 				
 						@if (count($errors)>0)
-							<div class="alert alert-danger">
+							<div class="alert alert-warning">
 								<ul>
 									@foreach($errors->all() as $error)
 										<li>{{ $error }}</li>
@@ -72,12 +74,13 @@
 											
 											<td>{{ $ticket->code_name }}</td>
 											<td>
-												<a href="{{ route('tickets.edit',$ticket->id) }}" title="Subir archivo" class="btn  btn-sm btn-outline-primary"><i class="fas fa-upload"></i></a>	
-												<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-outline-success"><i class="fas fa-eye"></i></a>	
-												<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-outline-info">
+												<a href="{{ route('tickets.edit',$ticket->id) }}" title="Subir archivo" class="btn  btn-sm btn-primary"><i class="fas fa-upload"></i></a>	
+												<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
+                                            @if($ticket->file!='/')													
+												<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-info">
 													<i class="fas fa-download"></i>
 												</a>
-								
+											@endif
 											</td>
 										</tr>
 									@endforeach

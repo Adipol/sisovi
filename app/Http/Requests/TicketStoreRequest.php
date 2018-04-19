@@ -16,7 +16,6 @@ class TicketStoreRequest extends FormRequest
     {
         return [
 			'incident_date'=>'required',
-			'start_time'=>'required',
 			'applicant_obs'=>'required|min:15',
 			'patio'=>'required',
 			'bus_id'=>'required',
@@ -31,8 +30,6 @@ class TicketStoreRequest extends FormRequest
 		return [
 		 	'incident_date.required'=>'Es necesario ingresar la fecha del incidente.',
 			'incident_date.date'=>'Formato de dato incorrecto.',
-			'start_time.required'=>'Es necesario ingresar la hora de inicio del incidente.',
-			'start_time.date_format'=>'Formato de dato incorrecto.', 
 			'applicant_obs.required'=>'Es necesario ingresar las observaciones.',
 			'applicant_obs.min'=>'La observación demasiado reducido.',
 			'patio.required'=>'Es necesario seleccionar el patio.',
