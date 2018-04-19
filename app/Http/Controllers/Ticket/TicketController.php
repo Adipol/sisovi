@@ -10,7 +10,6 @@ use App\Http\Requests\TicketStoreRequest;
 use App\Http\Requests\TicketUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
-//use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Ticket;
 use App\Level;
 use App\Bus;
@@ -20,8 +19,11 @@ use App\Area;
 
 class TicketController extends Controller
 {
-	 public function index(){
+	 public function __construct(){
+		$this->middleware('auth');
+	 }
 
+	 public function index(){
 		$tickets=Ticket::join('buses','tickets.bus_id','=','buses.id')
 		->join('patios','buses.patio_id','=','patios.id')
 		->join('levels','tickets.level_id','=','levels.id')
@@ -71,7 +73,7 @@ class TicketController extends Controller
 		 return redirect()->route('tickets.index')->with('notification','Ticket ingresado exitosamente.');
 	 }
 
-	 public function edit($id){
+	 public function show($id){
 		$ticket=Ticket::join('buses','tickets.bus_id','=','buses.id')
 		->join('patios','buses.patio_id','=','patios.id')
 		->join('levels','tickets.level_id','=','levels.id')
@@ -80,7 +82,20 @@ class TicketController extends Controller
 		->select('tickets.id as idt','tickets.code_area','users.name as applicant_name','buses.code','patios.name as pname','tickets.driver','tickets.host','levels.name as lname','tickets.incident_date','tickets.applicant_obs')
 		->where('tickets.id','=',$id)
 		->first();
-		//dd($ticket);
+
+		return view('tickets.show')->with(compact('ticket'));
+	 }
+
+	 public function edit($id){
+		$ticket=Ticket::join('buses','tickets.bus_id','=','buses.id')
+		->join('patios','buses.patio_id','=','patios.id')
+		->join('levels','tickets.level_id','=','levels.id')
+		->join('codes','tickets.code_id','=','codes.id') 
+		->join('users','tickets.applicant_id','=','users.id')
+		->select('tickets.id as idt','tickets.code_area','users.name as applicant_name','buses.code','patios.name as pname','tickets.driver','tickets.host','levels.name as lname','tickets.incident_date','tickets.applicant_obs','tickets.operational_obs')
+		->where('tickets.id','=',$id)
+		->first();
+
 		return view('tickets.edit')->with(compact('ticket'));
 	 }
 
@@ -122,11 +137,10 @@ class TicketController extends Controller
 		  ]);
 			
 		  $filecontent = $ftp->get($file); // read file content 
-		  // download file.
+			// download file.
 		  return Response::make($filecontent, '200', array(
 			   'Content-Type' => 'application/octet-stream',
 			   'Content-Disposition' => 'attachment; filename="'.$fileName.'"'
 		   ));
-
 	 } 
 }

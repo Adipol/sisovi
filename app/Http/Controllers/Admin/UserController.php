@@ -12,6 +12,10 @@ use App\Rol;
 
 class UserController extends Controller
 {
+	public function __construct(){
+		$this->middleware('auth');
+	}
+	
     public function index(){
 		$users=User::withTrashed()->orderBy('name','ASC')->with('rol')->paginate(10);
 		return view('admin.users.index')->with(compact('users'));

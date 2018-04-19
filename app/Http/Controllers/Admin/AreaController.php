@@ -13,6 +13,10 @@ use App\User;
 
 class AreaController extends Controller
 {
+	public function __construct(){
+		$this->middleware('auth');
+	}
+	
     public function index(){
 		$areas=Area::withTrashed()->orderBy('name','ASC')->paginate(10);
 		return view('admin.areas.index')->with(compact('areas'));

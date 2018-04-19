@@ -11,6 +11,14 @@ use App\Patio;
 
 class PatioController extends Controller
 {
+	public function __construct(){
+		$this->middleware('auth');
+	}
+	
+	public function __construct(){
+		$this->middleware('auth');
+	}
+
     public function index(){
 		$patios=Patio::withTrashed()->orderBy('name','ASC')->paginate(10);
 		return view('admin.patios.index')->with(compact('patios'));

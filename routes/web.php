@@ -44,5 +44,6 @@ Route::get('/tickets','Ticket\TicketController@index')->name('tickets.index');
 Route::get('/tickets/create','Ticket\TicketController@create')->name('tickets.create');
 Route::post('/tickets/store','Ticket\TicketController@store')->name('tickets.store');
 Route::get('/tickets/{id}/editar','Ticket\TicketController@edit')->name('tickets.edit');
+Route::get('/tickets/{id}/ver','Ticket\TicketController@show')->name('tickets.show');
 Route::post('/tickets/{id}/update','Ticket\TicketController@update')->name('tickets.update');
 Route::get('/tickets/{file}/download','Ticket\TicketController@download')->name('tickets.download');
