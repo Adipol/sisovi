@@ -19,10 +19,6 @@ use App\Area;
 
 class TicketController extends Controller
 {
-	 public function __construct(){
-		$this->middleware('auth');
-	 }
-
 	 public function index(){
 		$tickets=Ticket::join('buses','tickets.bus_id','=','buses.id')
 		->join('patios','buses.patio_id','=','patios.id')

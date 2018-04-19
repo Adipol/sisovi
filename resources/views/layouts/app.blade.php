@@ -35,8 +35,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<!-- Left Side Of Navbar -->
-
-					<ul class="navbar-nav mr-auto">
+				@if(auth()->check())
+					<ul class="navbar-nav mr-auto">	
 							<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="fas fa-pencil-alt"></i> Registrar<span class="caret"></span></a>
 							    <div class="dropdown-menu" >
@@ -53,9 +53,9 @@
 							</li>
 							<li class="nav-item">
 							  <a class="nav-link" href="#"><i class="fas fa-folder"></i> Tickets Archivados</a>
-							</li>
+							</li>	
 					</ul>
-					
+					@endif
                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -80,7 +80,8 @@
                                 </div>
                             </li>
                         @endguest
-                    </ul>
+					</ul>
+					
                 </div>
             </div>
         </nav>
