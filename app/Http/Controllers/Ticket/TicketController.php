@@ -114,7 +114,7 @@ class TicketController extends Controller
 			Storage::disk('ftp')->put($filenametostore, fopen($request->file('file'), 'r+'));
 			$ticket->file=$filenametostore;
 		}
-
+        $ticket->code_id=2;
 		$ticket->operational_obs=$request->input('operational_obs');
 		$ticket->save();
 
