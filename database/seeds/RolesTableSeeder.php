@@ -13,15 +13,18 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         Rol::create([
-			'name'=>'Administrador'
+			'name'=>'Administrador',
+			'abreviation'=>'admin'
 		]);
 
 		Rol::create([
-			'name'=>'Solicitante'
+			'name'=>'Solicitante',
+			'abreviation'=>'sol'
 		]);
 
 		Rol::create([
-			'name'=>'Operacional'
+			'name'=>'Operacional',
+			'abreviation'=>'ope'
 		]);
 
     }

@@ -13,7 +13,11 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name', 'email', 'password','rol_id'
-    ];
+	];
+	
+	public static function navigation(){
+		return auth()->check()? auth()->user()->rol->abreviation : 'guest';
+	} 
 
     protected $hidden = [
         'password', 'remember_token',
