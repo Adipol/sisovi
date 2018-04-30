@@ -69,7 +69,7 @@ return [
 		'ftp' => [
             'driver' => 'ftp',
 			'host' => '192.168.1.2',
-            'username' => 'enjaular',
+            'username' => 'noenjaulado',
             'password' => '123456',
    		],
 

@@ -105,7 +105,7 @@ class TicketController extends Controller
 		$cod_name=$request->input('cod_name');
 		
 
-		//if($request->hasfile('file')){
+		if($request->hasfile('file')){
 			$file=$request->file('file');
 			$filenamewithextension = $request->file('file')->getClientOriginalName();
 			$filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
@@ -114,7 +114,7 @@ class TicketController extends Controller
 			//dd($filenametostore);
 			Storage::disk('ftp')->put($filenametostore, fopen($request->file('file'), 'r+'));
 			$ticket->file=$filenametostore;
-		//}
+		}
         $ticket->code_id=2;
 		$ticket->operational_obs=$request->input('operational_obs');
 		$ticket->save();
@@ -124,22 +124,21 @@ class TicketController extends Controller
 
 	 public function download(Request $request, $file){
 		
-		if(!$file) {
+ 		if(!$file) {
             return Response::json('please provide valid path', 400);
          } 
 		$fileName = basename($file);
 		
         $ftp = Storage::createFtpDriver([
                         'host'     => '192.168.1.2',
-                        'username' => 'enjaulado',
-                        'password' => '123',
+                        'username' => 'noenjaulado',
+                        'password' => '123456',
 						'port'     => '21', // your ftp port
 						'timeout'  => '30', // timeout setting 
                          
 		  ]);
 			
 		  $filecontent = $ftp->get($file); // read file content 
-			// download file.
 		  return Response::make($filecontent, '200', array(
 			   'Content-Type' => 'application/octet-stream',
 			   'Content-Disposition' => 'attachment; filename="'.$fileName.'"'
