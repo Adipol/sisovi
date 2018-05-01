@@ -37,11 +37,11 @@ class TicketController extends Controller
 	 }
 
 	 public function create(){
-		 $areas=Area::all();
+		 $areas=Area::pluck('name','abreviation');
 		 $applicant=auth()->user();
-		 $buses=Bus::all();
-		 $patios=Patio::all();
-		 $levels=Level::all();
+		 $buses=Bus::pluck('code','id');
+		 $patios=Patio::pluck('name','id');
+		 $levels=Level::pluck('name','id');
 		 
 		 return view('tickets.create')->with(compact('areas','applicant','buses','patios','levels'));
 	 }
@@ -53,11 +53,11 @@ class TicketController extends Controller
 		 $ticket->incident_date=$request->input('incident_date');
 		 
 		 $ticket->applicant_obs=$request->input('applicant_obs');
-		 $ticket->patio=$request->input('patio');
+		 $ticket->patio=$request->input('patio_id');
 		 $ticket->level_id=$request->input('level_id');
 		 $ticket->bus_id=$request->input('bus_id');
-		 $ticket->area=$request->input('area');
-		 $var1=$request->input('area');
+		 $ticket->area=$request->input('area_id');
+		 $var1=$request->input('area_id');
 
 		 $vart=Ticket::where('area','=',$var1)->count();
 

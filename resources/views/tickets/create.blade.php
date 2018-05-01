@@ -29,32 +29,29 @@
 
 						<div class="form-group">
 							<label>Area</label>
-							<select name="area" class="form-control">
-						
+							<select name="area_id" class="form-control">
 							  <option value="">Seleccione Area</option>
-							  @foreach($areas as $area)
-								<option value="{{ $area->abreviation }}">{{ $area->name}}</option>
+							  @foreach($areas as $abreviation => $area)
+								<option {{  old('area_id') === $abreviation ? 'selected' : '' }} value="{{ $abreviation }}">{{ $area }}</option>
 								@endforeach
 							</select>
 				     	</div>
-
 						 <div class="form-group">
 							<label>Bus</label>
-							<select name="bus_id" class="form-control">
-								
-							  <option value="">Seleccione Bus</option>
-							  @foreach($buses as $bus)
-								<option value="{{ $bus->id }}">{{ $bus->code}}</option>
-								@endforeach
+							<select name = "bus_id" class = "form-control">
+								<option value = "">Seleccione Bus</option>
+							@foreach($buses as $id => $bus )
+								<option {{ (int) old('bus_id') === $id ? 'selected' : '' }} value = "{{ $id }}">{{ $bus }}</option>
+							@endforeach
 							</select>
-				     	</div>
-
+						 </div>
+						 
 						 <div class="form-group">
 							<label>Patio</label>
-							<select name="patio" class="form-control">
-							  <option value="">Seleccione Patio</option>
-							  @foreach($patios as $patio)
-								<option value="{{ $patio->id }}">{{ $patio->name }}</option>
+							<select name = "patio_id" class = "form-control">
+							  <option value = "">Seleccione Patio</option>
+							  @foreach($patios as $id => $patio)
+								<option {{ (int) old('patio_id') === $id ? 'selected' : '' }} value = "{{ $id }}">{{ $patio }}</option>
 								@endforeach
 							</select>
 						 </div>
@@ -73,8 +70,8 @@
 							<label>Grado del Incidente</label>
 							<select name="level_id" class="form-control">
 							  <option value="">Seleccione Grado</option>
-							  @foreach($levels as $level)
-								<option value="{{ $level->id }}">{{ $level->name}}</option>
+							  @foreach($levels as $id => $level )
+								<option {{ (int) old('level_id') === $id ? 'selected' : '' }} value="{{ $id }}">{{ $level }}</option>
 								@endforeach
 							</select>
 				     	</div>
