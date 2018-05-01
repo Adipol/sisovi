@@ -10,9 +10,6 @@
 					<h2>Tickets</h2>
 				</div>
 				<div class="card-body">
-					@if(auth()->user()->is_sol)
-					 <a href="{{ route('tickets.create') }}" class="btn btn-primary" style="margin-botton: 15px;"><i class="fas fa-plus-circle"></i> Crear Ticket</a>
-					 @endif
 					<hr>
 					<div class="alert-custom">
 						@if (session('notification'))
@@ -20,14 +17,6 @@
 								{{ session('notification')}}
 							</div>
 						@endif
-
-						@if (session('danger'))
-							<div class="alert alert-danger">
-								{{ session('danger')}}
-							</div>
-						@endif
-						
-				
 						@if (count($errors)>0)
 							<div class="alert alert-warning">
 								<ul>
@@ -38,7 +27,6 @@
 							</div>
 						@endif
 					</div>
-
 						<div class="table-responsive">  
 						<table class="table table-hover table-striped">
 								<thead class="thead-light">
@@ -50,25 +38,13 @@
 									<th>Patio</th>
 									<th>Fecha de Incidente</th>
 									<th>Fecha de Solicitud</th>
-									<th>Demora de Ticket</th>
 									<th>Estado de Ticket</th>
 									<th width="130px">Opción</th>
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($tickets as $key=>$ticket)
-										<tr @if($ticket->level_name=='Normal' && $ticket->code_id==2 ) 
-												class="table-success"
-											@else
-												@if($ticket->level_name=='Alto' && $ticket->code_id==1)
-													class="table-danger"
-													@else
-													@if($ticket->level_name=='Alto' && $ticket->code_id==2)
-													   class="table-success"
-													   @endif
-												 @endif 
-											@endif>
-											
+									@forelse($tickets as $key=>$ticket)
+										<tr>
 											<td style="padding-left:15px;">{{ $key+1 }}</td>
 											<td>{{ $ticket->code_area }}</td>
 											<td>{{ $ticket->level_name }}</td>
@@ -76,27 +52,19 @@
 											<td>{{ $ticket->patio_name }}</td>
 											<td>{{ $ticket->incident_date->formatLocalized('%A %d %B %Y')}}</td>
 											<td>{{ $ticket->created_at->formatLocalized('%A %d %B %Y')}}</td>
-
-											<td>@if($ticket->code_id==2 || $ticket->code_id==3 )Finalizado @else {{$ticket->created_at->diffForHumans()}} @endif </td>
-											
 											<td>{{ $ticket->code_name }}</td>
 											<td>
-											@if($ticket->file=='/')	
-												<a href="{{ route('tickets.edit',$ticket->id) }}" title="Subir archivo" class="btn  btn-sm btn-primary"><i class="fas fa-upload"></i></a>
-												@else
-												<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>	
-											@endif	
-												
-                                            @if($ticket->file!='/')													
-												<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-info">
-													<i class="fas fa-download"></i>
-												</a>
-												@else
-												
-											@endif
+													<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
+												@if($ticket->file!='/')													
+													<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-info">
+														<i class="fas fa-download"></i>
+													</a>
+												@endif
 											</td>
 										</tr>
-									@endforeach
+										@empty
+										<tr><td colspan="9" style="text-align: center;">Sin registros</td></tr>
+									@endforelse
 								</tbody>
 							</table>
 							{{ $tickets->render()}}

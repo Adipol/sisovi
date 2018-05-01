@@ -32,7 +32,7 @@ class TicketController extends Controller
 		->join('users','tickets.applicant_id','=','users.id')
 		->select('tickets.id','tickets.code_area','levels.name as level_name','users.name as applicant_name','patios.name as patio_name','tickets.incident_date','codes.name as code_name','tickets.created_at','tickets.code_id','tickets.file')
 		->paginate(10);
-		//dd($tickets);
+	
 		return view('tickets.index')->with(compact('tickets')); 
 	 }
 
@@ -105,13 +105,12 @@ class TicketController extends Controller
 		$cod_name=$request->input('cod_name');
 		
 
-		if($request->hasfile('file')){
+		if($request->hasFile('file')){
 			$file=$request->file('file');
 			$filenamewithextension = $request->file('file')->getClientOriginalName();
 			$filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
 			$extension = $request->file('file')->getClientOriginalExtension();
 			$filenametostore = $cod_name .'_'.time().'.'. $extension;
-			//dd($filenametostore);
 			Storage::disk('ftp')->put($filenametostore, fopen($request->file('file'), 'r+'));
 			$ticket->file=$filenametostore;
 		}
@@ -123,18 +122,14 @@ class TicketController extends Controller
 	 }
 
 	 public function download(Request $request, $file){
-		
- 		if(!$file) {
-            return Response::json('please provide valid path', 400);
-         } 
+	 try {
 		$fileName = basename($file);
-		
-        $ftp = Storage::createFtpDriver([
+		$ftp = Storage::createFtpDriver([
                         'host'     => '192.168.1.2',
                         'username' => 'noenjaulado',
                         'password' => '123456',
-						'port'     => '21', // your ftp port
-						'timeout'  => '30', // timeout setting 
+						'port'     => '21',
+						'timeout'  => '30', 
                          
 		  ]);
 			
@@ -143,5 +138,9 @@ class TicketController extends Controller
 			   'Content-Type' => 'application/octet-stream',
 			   'Content-Disposition' => 'attachment; filename="'.$fileName.'"'
 		   ));
+		} catch (\Exception $exception) {
+	    	$error = $exception->getMessage();
+	    	return back()->with('danger','Archivo no encontrado.');
+	    }
 	 } 
 }

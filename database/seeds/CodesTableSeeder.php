@@ -13,15 +13,15 @@ class CodesTableSeeder extends Seeder
     public function run()
     {
 		Code::create([
-			'name'=>'Solicitud',
+			'name'=>'SOLICITADO',
 		]);
 
 		Code::create([
-			'name'=>'Finalizado',
+			'name'=>'ARCHIVO ENVIADO',
 		]);
 
 		Code::create([
-			'name'=>'Archivado',
+			'name'=>'FINALIZADO',
 		]);
     }
 }

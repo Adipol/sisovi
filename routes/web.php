@@ -48,3 +48,5 @@ Route::get('/tickets/{id}/editar','Ticket\TicketController@edit')->name('tickets
 Route::get('/tickets/{id}/ver','Ticket\TicketController@show')->name('tickets.show');
 Route::post('/tickets/{id}/update','Ticket\TicketController@update')->name('tickets.update');
 Route::get('/tickets/{file}/download','Ticket\TicketController@download')->name('tickets.download');
+
+Route::get('/finished','Ticket\FinishedController@index')->name('finished.index');
