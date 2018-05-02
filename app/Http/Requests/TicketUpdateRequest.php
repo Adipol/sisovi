@@ -15,7 +15,7 @@ class TicketUpdateRequest extends FormRequest
     {
         return [
 			'operational_obs'=>'required|min:15',
-			'file'=>'required|mimes:rar,zip'
+			'file'=>'required|file|max:800000|mimes:rar,zip'
         ];
 	}
 	

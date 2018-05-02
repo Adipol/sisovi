@@ -101,28 +101,24 @@ class TicketController extends Controller
 	 }
 
 	 public function update(TicketUpdateRequest $request, $id){
-		try{
-			DB::beginTransaction();
-
+		
 			$ticket=Ticket::find($id);
 			$cod_name=$request->input('cod_name');
-	
 			if($request->hasFile('file')){
-				$file=$request->file('file');
-				$filenamewithextension = $request->file('file')->getClientOriginalName();
-				$filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-				$extension = $request->file('file')->getClientOriginalExtension();
-				$filenametostore = $cod_name .'_'.time().'.'. $extension;
-				Storage::disk('ftp')->put($filenametostore, fopen($request->file('file'), 'r+'));
-				$ticket->file=$filenametostore;
+				
+					$file=$request->file('file');
+					$filenamewithextension = $request->file('file')->getClientOriginalName();
+					$filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+					$extension = $request->file('file')->getClientOriginalExtension();
+					$filenametostore = $cod_name .'_'.time().'.'. $extension;
+					Storage::disk('ftp')->put($filenametostore, fopen($request->file('file'), 'r+'));
+					$ticket->file=$filenametostore;
+					$ticket->code_id=2;
+					$ticket->operational_obs=$request->input('operational_obs');
+					$ticket->save();
+	
 			}
-			$ticket->code_id=2;
-			$ticket->operational_obs=$request->input('operational_obs');
-			$ticket->save();
-			DB::commit();
-		}catch(\Exception $e){
-			DB::rollBack()->with('danger','Nose pudo completar el proceso.');;
-		}
+
 		return redirect()->route('tickets.index')->with('notification','archivo ingresado exitosamente.');
 	 }
 
