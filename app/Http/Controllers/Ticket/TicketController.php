@@ -147,9 +147,7 @@ class TicketController extends Controller
 	 }
 	 
 	 public function restore(Request $request, $file){
-
 		Storage::disk('ftp')->delete($file);
 		return redirect()->route('tickets.index')->with('notification','Ticket reenviado');
-
 	 }
 }
