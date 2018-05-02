@@ -123,7 +123,8 @@ class TicketController extends Controller
 	 }
 
 	 public function download(Request $request, $file){
-	 try {
+		if (Storage::disk('ftp')->exists($file))
+		{
 		$fileName = basename($file);
 		$ftp = Storage::createFtpDriver([
                         'host'     => '192.168.1.2',
@@ -139,9 +140,16 @@ class TicketController extends Controller
 			   'Content-Type' => 'application/octet-stream',
 			   'Content-Disposition' => 'attachment; filename="'.$fileName.'"'
 		   ));
-		} catch (\Exception $exception) {
-	    	$error = $exception->getMessage();
-	    	return back()->with('danger','Archivo no encontrado.');
-	    }
-	 } 
+		}
+		else{
+			return back()->with('danger','Archivo no encontrado.');
+		}
+	 }
+	 
+	 public function restore(Request $request, $file){
+
+		Storage::disk('ftp')->delete($file);
+		return redirect()->route('tickets.index')->with('notification','Ticket reenviado');
+
+	 }
 }

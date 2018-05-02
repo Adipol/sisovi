@@ -64,7 +64,8 @@
 						</div>
 
 						<div class="form-group">
-								<a type="reset" class="btn  btn-sm btn-primary"><i class="fas fa-upload"></i>Reset</a>
+							<a href="#" title="Reenviar ticket" class="btn  btn-sm btn-warning"><i class="fas fa-retweet"></i> volver</a>
+
 						</div>				
 					{!! Form::close() !!}
 				</div>

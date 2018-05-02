@@ -84,13 +84,17 @@
 											@if($ticket->file=='/')	
 												<a href="{{ route('tickets.edit',$ticket->id) }}" title="Subir archivo" class="btn  btn-sm btn-primary"><i class="fas fa-upload"></i></a>
 												@else
-												<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>	
+												<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
+
 											@endif	
 												
                                             @if($ticket->file!='/')													
 												<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-info">
 													<i class="fas fa-download"></i>
 												</a>
+												<a href="{{ route('tickets.restore',$ticket->file) }}" title="Reenviar ticket" class="btn  btn-sm btn-warning"><i class="fas fa-retweet"></i> Reenviar ticket</a>
+					
+												<a href="#" title="Finalizar ticket" class="btn  btn-sm btn-danger"><i class="fas fa-check"></i></a>
 												@else
 												
 											@endif
