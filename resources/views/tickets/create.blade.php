@@ -87,7 +87,8 @@
 						</div>
 
 						<div class="form-group">
-								<button  class="btn btn-primary"><i class="fas fa-plus-circle"></i> Registrar Ticket</button>
+								<button  class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Registrar Ticket</button>
+								<a href="{{ route('tickets.index') }}" title="Reenviar ticket" class="btn  btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Cancelar</a>
 						</div>
 						
 					{!! Form::close() !!}

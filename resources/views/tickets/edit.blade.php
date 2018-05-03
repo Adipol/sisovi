@@ -87,8 +87,8 @@
 						</div>
 
 						<div class="form-group">
-							<button class="btn btn-primary" type="submit">Cargar</button>
-								<button class="btn btn-default" type="reset">Reset</button>
+							<button class="btn btn-sm btn-success" type="submit"><i class="fas fa-plus-circle"></i> Cargar</button>
+							<a href="{{ route('tickets.index') }}" title="Reenviar ticket" class="btn  btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Cancelar</a>
 						</div>
 						
 					{!! Form::close() !!}

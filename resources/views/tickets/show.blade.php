@@ -9,6 +9,12 @@
 					<h5>Ticket</h5> 
 				</div>
 
+				@if (session('danger'))
+				<div class="alert alert-danger">
+					{{ session('danger')}}
+				</div>
+				@endif
+
 				<div class="card-body" >
 		  		{!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST'])!!}
 
@@ -64,7 +70,9 @@
 						</div>
 
 						<div class="form-group">
-							<a href="#" title="Reenviar ticket" class="btn  btn-sm btn-warning"><i class="fas fa-retweet"></i> volver</a>
+							<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-success"><i class="fas fa-download"></i> Descargar archivo</a>
+							<a href="{{ route('tickets.restore',$ticket->file) }}" onclick="return confirm('Esta seguro de reenviar la solicitud?')" title="Reenviar ticket" class="btn  btn-sm btn-info"><i class="fas fa-retweet"></i> Reenviar ticket</a>
+							<a href="{{ route('tickets.index') }}" title="Reenviar ticket" class="btn  btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Cancelar</a>
 
 						</div>				
 					{!! Form::close() !!}

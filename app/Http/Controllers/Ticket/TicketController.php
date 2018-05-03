@@ -10,6 +10,7 @@ use App\Http\Requests\TicketStoreRequest;
 use App\Http\Requests\TicketUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Http\File;
 use App\Ticket;
 use App\Level;
 use App\Bus;
@@ -80,7 +81,7 @@ class TicketController extends Controller
 		->join('levels','tickets.level_id','=','levels.id')
 		->join('codes','tickets.code_id','=','codes.id') 
 		->join('users','tickets.applicant_id','=','users.id')
-		->select('tickets.id as idt','tickets.code_area','users.name as applicant_name','buses.code','patios.name as pname','tickets.driver','tickets.host','levels.name as lname','tickets.incident_date','tickets.applicant_obs')
+		->select('tickets.id as idt','tickets.code_area','users.name as applicant_name','buses.code','patios.name as pname','tickets.driver','tickets.host','levels.name as lname','tickets.incident_date','tickets.applicant_obs','tickets.file')
 		->where('tickets.id','=',$id)
 		->first();
 
@@ -135,8 +136,8 @@ class TicketController extends Controller
                          
 		  ]);
 			
-		  $filecontent = $ftp->get($file); // read file content 
-		  return Response::make($filecontent, '200', array(
+		$filecontent = $ftp->get($file); // read file content 
+		return Response::make($filecontent, '200', array(
 			   'Content-Type' => 'application/octet-stream',
 			   'Content-Disposition' => 'attachment; filename="'.$fileName.'"'
 		   ));
@@ -147,7 +148,29 @@ class TicketController extends Controller
 	 }
 	 
 	 public function restore(Request $request, $file){
-		Storage::disk('ftp')->delete($file);
-		return redirect()->route('tickets.index')->with('notification','Ticket reenviado');
+		if(Storage::disk('ftp')->exists($file))
+		{
+			$ticket=Ticket::where('file','=',$file)->first();
+			$user=auth()->user()->id;
+			$userName=auth()->user()->name;
+			Storage::disk('ftp')->put($user. ''.time().'_' . $file, $userName);
+			$ticket->code_id=4;
+			$ticket->file='/';
+			$ticket->save();
+	
+			return redirect()->route('tickets.index')->with('notification','Ticket reenviado exitosamente.');
+		}else{
+			return back()->with('danger','Archivo no encontrado.');
+		} 
+	 }
+
+	 public function finished(Request $request, $id){
+		$ticket=Ticket::find($id);
+		$ticket->code_id=3;
+		$ticket->ucm=auth()->user()->id;
+		$ticket->save();
+
+		return redirect()->route('tickets.index')->with('notification','Ticket finalizado.');
+
 	 }
 }
