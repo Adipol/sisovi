@@ -17,47 +17,59 @@
 
 				<div class="card-body" >
 		  		{!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST'])!!}
-
-					<div class="form-group">
-						<label for="">Codigo de Ticket</label>
-						<input type="text" name="cod_name" class="form-control"  value="{{ $ticket->code_area }}" readonly >
+					<div class="row">
+						<div class="form-group col-12 col-md-6">
+							<label for="">Codigo de Ticket</label>
+							<input type="text" name="cod_name" class="form-control"  value="{{ $ticket->code_area }}" readonly>
+						</div>
 					</div>
 					
-						<div class="form-group">
+					<div class="row">
+						<div class="form-group col-12 col-md-6">
 							<label for="">Solicitante</label>
-							<input type="text" name="applicant_id" class="form-control"  value="{{ $ticket->applicant_name }}" readonly >
+							<input type="text" name="applicant_id" class="form-control"  value="{{ $ticket->applicant_name }}" readonly>
 						</div>
- 
-						 <div class="form-group">
+					</div>
+
+					<div class="row">
+						<div class="form-group col-12 col-md-6">
 							<label>Bus</label>
-							<input type="text" name="bus_id" class="form-control"  value="{{ $ticket->code }}" readonly >
-				     	</div>
-
-						 <div class="form-group">
+							<input type="text" name="bus_id" class="form-control"  value="{{ $ticket->code }}" readonly>
+						</div>
+		
+						<div class="form-group col-12 col-md-6">
 							<label>Patio</label>
-							<input type="text" name="patio_id" class="form-control"  value="{{ $ticket->pname }}" readonly >
-						 </div>
-					 
-						 <div class="form-group">
-								<label for="">Conductor</label>
-								<input type="text" name="driver" class="form-control"  value="{{ $ticket->driver }}" readonly >
+							<input type="text" name="patio_id" class="form-control"  value="{{ $ticket->pname }}" readonly>
 						</div>
-	
-						<div class="form-group">
-								<label for="">Anfitrión</label>
-								<input type="text" name="host" class="form-control"  value="{{ $ticket->host }}" readonly >
-						</div>
-							
-						 <div class="form-group">
-							<label>Grado del Incidente</label>
-							<input type="text" name="lname" class="form-control"  value="{{ $ticket->lname }}" readonly >
-				     	</div>
+					</div>
 
-						<div class="form-group">
+					<div class="row">
+						<div class="form-group col-12 col-md-6">
+							<label>Grado del Incidente</label>
+							<input type="text" name="lname" class="form-control"  value="{{ $ticket->lname }}" readonly>
+						</div>
+			
+						<div class="form-group col-12 col-md-6">
 							<label for="">Fecha del Incidente</label>
 							<input  type="date" name="incident_date" class="form-control" value="{{$ticket->incident_date->format('Y-m-d') }}" readonly>
-							
 						</div>
+					</div>
+					
+					<div class="row">
+						<div class="form-group col-12 col-md-6">
+							<label for="">Conductor</label>
+							<input type="text" name="driver" class="form-control"  value="{{ $ticket->driver }}" readonly>
+						</div>
+			
+						<div class="form-group col-12 col-md-6">
+							<label for="">Anfitrión</label>
+							<input type="text" name="host" class="form-control"  value="{{ $ticket->host }}" readonly>
+						</div>
+					</div>
+
+
+
+
 					
 						<div class="form-group">
 							<label for="">Detalle del Incidente</label>

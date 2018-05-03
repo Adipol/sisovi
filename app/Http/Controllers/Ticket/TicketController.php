@@ -148,8 +148,7 @@ class TicketController extends Controller
 	 }
 	 
 	 public function restore(Request $request, $file){
-		if(Storage::disk('ftp')->exists($file))
-		{
+		if(Storage::disk('ftp')->exists($file)){
 			$ticket=Ticket::where('file','=',$file)->first();
 			$user=auth()->user()->id;
 			$userName=auth()->user()->name;

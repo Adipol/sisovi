@@ -21,13 +21,12 @@
 
 				<div class="card-body">
 					{!! Form::open(['route'=>'tickets.store']) !!}
-					
-						<div class="form-group">
+					<div class="row">
+						<div class="form-group col-12 col-md-6">
 							<label for="">Solicitante</label>
 							<input type="text" name="applicant_id" class="form-control" value="{{ $applicant->name }}" readonly >
 						</div>
-
-						<div class="form-group">
+						<div class="form-group col-12 col-md-6">
 							<label>Area</label>
 							<select name="area_id" class="form-control">
 							  <option value="">Seleccione Area</option>
@@ -35,8 +34,10 @@
 								<option {{  old('area_id') === $abreviation ? 'selected' : '' }} value="{{ $abreviation }}">{{ $area }}</option>
 								@endforeach
 							</select>
-				     	</div>
-						 <div class="form-group">
+						 </div>
+					</div>
+					<div class="row">
+						<div class="form-group col-12 col-md-6">
 							<label>Bus</label>
 							<select name = "bus_id" class = "form-control">
 								<option value = "">Seleccione Bus</option>
@@ -45,8 +46,7 @@
 							@endforeach
 							</select>
 						 </div>
-						 
-						 <div class="form-group">
+						 <div class="form-group col-12 col-md-6">
 							<label>Patio</label>
 							<select name = "patio_id" class = "form-control">
 							  <option value = "">Seleccione Patio</option>
@@ -55,18 +55,9 @@
 								@endforeach
 							</select>
 						 </div>
-						 
-						 <div class="form-group">
-								<label for="">Conductor</label>
-								<input type="text" name="driver" class="form-control">{{ old ('driver') }}</input>
-						</div>
-
-						<div class="form-group">
-								<label for="">Anfitrión</label>
-								<input type="text" name="host" class="form-control">{{ old ('host') }}</input>
-						</div>
-							
-						 <div class="form-group">
+					</div>
+					<div class="row">
+						<div class="form-group col-12 col-md-6">
 							<label>Grado del Incidente</label>
 							<select name="level_id" class="form-control">
 							  <option value="">Seleccione Grado</option>
@@ -75,12 +66,21 @@
 								@endforeach
 							</select>
 				     	</div>
-
-						<div class="form-group">
+						<div class="form-group col-12 col-md-6">
 							<label for="">Fecha del Incidente</label>
 							<input  type="date" name="incident_date" class="form-control" value="{{ old('incident_date',date('Y-m-d'))}}">
 						</div>
-						
+					</div>	
+					<div class="row">
+						<div class="form-group col-12 col-md-6">
+							<label for="">Conductor</label>
+							<input type="text" name="driver" class="form-control">{{ old ('driver') }}</input>
+					    </div>
+						<div class="form-group col-12 col-md-6">
+								<label for="">Anfitrión</label>
+								<input type="text" name="host" class="form-control">{{ old ('host') }}</input>
+						</div>
+					</div>
 						<div class="form-group">
 							<label for="">Detalle del Incidente</label>
 							<textarea name="applicant_obs" class="form-control">{{ old ('applicant_obs') }}</textarea>
