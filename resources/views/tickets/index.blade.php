@@ -89,7 +89,7 @@
 											@endif	
 												
                                             @if($ticket->file!='/')																	
-												<a href="{{ route('tickets.finished',$ticket->id) }}" title="Finalizar ticket" class="btn  btn-sm btn-danger"><i class="fas fa-check"></i></a>
+												<a href="{{ route('tickets.finished',$ticket->id) }}" onclick="return confirm('Esta seguro de finalizar la solicitud?')" title="Finalizar ticket" class="btn  btn-sm btn-danger"><i class="fas fa-check"></i></a>
 												@else
 												
 											@endif

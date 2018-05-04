@@ -66,10 +66,6 @@
 							<input type="text" name="host" class="form-control"  value="{{ $ticket->host }}" readonly>
 						</div>
 					</div>
-
-
-
-
 					
 						<div class="form-group">
 							<label for="">Detalle del Incidente</label>

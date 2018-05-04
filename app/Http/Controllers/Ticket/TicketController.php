@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Mail\NewTicket;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TicketStoreRequest;
 use App\Http\Requests\TicketUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\Mail;
 use App\Ticket;
 use App\Level;
 use App\Bus;
@@ -69,9 +71,11 @@ class TicketController extends Controller
 		 $ticket->driver=$request->input('driver');
 		 $ticket->host=$request->input('host');
 		 $ucm=auth()->user();
+				 
 		 $ticket->ucm=$ucm->id;
 		 $ticket->save();
-
+		
+		 
 		 return redirect()->route('tickets.index')->with('notification','Ticket ingresado exitosamente.');
 	 }
 
@@ -119,7 +123,7 @@ class TicketController extends Controller
 					$ticket->save();
 	
 			}
-
+			Mail::to('adipol13@gmail.com')->send(new NewTicket($ticket, auth()->user()->name));
 		return redirect()->route('tickets.index')->with('notification','archivo ingresado exitosamente.');
 	 }
 
