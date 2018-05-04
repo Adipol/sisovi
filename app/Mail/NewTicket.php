@@ -12,8 +12,8 @@ class NewTicket extends Mailable
 {
     use Queueable, SerializesModels;
 
-	public $ticket;
-	public $solicitante_name;
+	private $ticket;
+	private $solicitante_name;
     /**
      * Create a new message instance.
      *

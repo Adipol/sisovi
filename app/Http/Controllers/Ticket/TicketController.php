@@ -18,7 +18,7 @@ use App\Level;
 use App\Bus;
 use App\Patio;
 use App\Area;
-
+use App\User;
 
 class TicketController extends Controller
 {
@@ -51,7 +51,8 @@ class TicketController extends Controller
 
 	 public function store(TicketStoreRequest $request){
 		 $ticket= new Ticket();
-
+		 $operationals=User::where('rol_id','=',3)->pluck('email');
+		
 		 $ticket->applicant_id=auth()->user()->id;
 		 $ticket->incident_date=$request->input('incident_date');
 		 
@@ -74,8 +75,11 @@ class TicketController extends Controller
 				 
 		 $ticket->ucm=$ucm->id;
 		 $ticket->save();
-		
 		 
+		 foreach($operationals as $operational){
+			Mail::to($operational)->send(new NewTicket($ticket, auth()->user()->name));
+		 }
+		
 		 return redirect()->route('tickets.index')->with('notification','Ticket ingresado exitosamente.');
 	 }
 
@@ -108,9 +112,9 @@ class TicketController extends Controller
 	 public function update(TicketUpdateRequest $request, $id){
 		
 			$ticket=Ticket::find($id);
+			
 			$cod_name=$request->input('cod_name');
 			if($request->hasFile('file')){
-				
 					$file=$request->file('file');
 					$filenamewithextension = $request->file('file')->getClientOriginalName();
 					$filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
@@ -121,9 +125,7 @@ class TicketController extends Controller
 					$ticket->code_id=2;
 					$ticket->operational_obs=$request->input('operational_obs');
 					$ticket->save();
-	
 			}
-			Mail::to('adipol13@gmail.com')->send(new NewTicket($ticket, auth()->user()->name));
 		return redirect()->route('tickets.index')->with('notification','archivo ingresado exitosamente.');
 	 }
 

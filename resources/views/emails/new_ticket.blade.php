@@ -1,14 +1,13 @@
 @component('mail::message')
 # {{ __("Nueva solicitud!") }}
 
-{{ __("El estudiante :solicitante se ha inscrito en tu curso :ticket, FELICIDADES", ['ticket' => $ticket->id]) }}
+{{ __("El usuario **:solicitante**, solicito video del **:bus** perteneciente al patio de operaciones **:patio**, con el código de ticket **:ticket_cod_area**.", ['solicitante'=>$solicitante, 'ticket_cod_area'=>$ticket->code_area,'bus'=>$ticket->bus->code,'patio'=>$ticket->bus->patio->name]) }}
+<img class="img-responsive" src="{{ url('storage/sisovi/camaras.jpg') }}" alt="Sisovi">
 
-
-@component('mail::button', ['url' => url('/tickets/' . $ticket->id . '/editar'), 'color' => 'red'])
-    {{ __("Ir al curso") }}
+@component('mail::button', ['url' => url('/tickets'), 'color' => 'blue'])
+    {{ __("Ir a la solicitud") }}
 @endcomponent
 
-{{ __("Gracias") }},<br>
-{{ config('app.name') }}
+{{ __("Gracias") }}.
 
 @endcomponent

@@ -14,15 +14,15 @@ class Ticket extends Model
 	protected $dates=['incident_date','start_time'];
 	
 	public function bus(){
-		return $this->belongsTo('App\Bus');
+		return $this->belongsTo('App\Bus','bus_id');
 	}
 	
 	public function level(){
-		return $this->belongsTo('App\Level');
+		return $this->belongsTo('App\Level','level_id');
 	}
 	
 	public function code(){
-		return $this->belongsTo('App\Code');
+		return $this->belongsTo('App\Code','code_id');
 	}
 	
 }
