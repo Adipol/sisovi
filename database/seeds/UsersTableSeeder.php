@@ -21,5 +21,24 @@ class UsersTableSeeder extends Seeder
 			'keyword'=>bcrypt('siri'),
 			'ucm'=>1
 		]);
+
+		User::create([
+			'name'=>'Solicitante',
+			'email'=>'solicitante@email.com',
+			'password'=>bcrypt('secret'),
+			'rol_id'=>2,
+			'keyword'=>bcrypt('secret'),
+			'ucm'=>1
+		]);
+
+		User::create([
+			'name'=>'Solicitante',
+			'email'=>'operacional@email.com',
+			'password'=>bcrypt('secret'),
+			'rol_id'=>3,
+			'keyword'=>bcrypt('secret'),
+			'ucm'=>1
+		]);
+		
     }
 }

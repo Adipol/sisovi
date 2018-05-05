@@ -22,7 +22,7 @@ class Ticket extends Model
 	}
 	
 	public function code(){
-		return $this->belongsTo('App\Code');
+		return $this->belongsTo('App\Code','code_id');
 	}
 	
 }

@@ -14,7 +14,7 @@ class TicketsTableSeeder extends Seeder
     {
 		Ticket::create([
 			'code_area'=>'1',
-			'applicant_id'=>1,
+			'applicant_id'=>2,
 			'incident_date'=>'2007-05-29 22:30:48',
 			'applicant_obs'=>'HOLA COMOE SYAS',
 			'operational_obs'=>'HOLA COMO ESTAS TI',
@@ -29,7 +29,7 @@ class TicketsTableSeeder extends Seeder
 		]);
 		Ticket::create([
 			'code_area'=>'1',
-			'applicant_id'=>1,
+			'applicant_id'=>2,
 			'incident_date'=>'2007-05-29 22:30:48',
 			'applicant_obs'=>'HOLA COMOE SYAS',
 			'operational_obs'=>'HOLA COMO ESTAS TI',

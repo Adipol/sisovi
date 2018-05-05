@@ -12,7 +12,6 @@ class CreateTicketsTable extends Migration
 			$table->increments('id');
 
 			$table->string('code_area'); //codigo de area
-			$table->integer('applicant_id');//solicitante id
 			$table->integer('operational_id')->nullable();//operacional id
 			
 			$table->date('incident_date');//fecha de incidente
@@ -25,6 +24,9 @@ class CreateTicketsTable extends Migration
 			$table->string('file')->default('/');
 			$table->integer('patio');
 			$table->string('area');
+
+			$table->integer('applicant_id')->unsigned();	//solicitante id
+			$table->foreign('applicant_id')->references('id')->on('users');
 
 			$table->integer('code_id')->unsigned()->default(1);
 			$table->foreign('code_id')->references('id')->on('codes');
