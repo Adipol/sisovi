@@ -12,4 +12,8 @@ class Area extends Model
 	protected $table = "areas";
 
 	protected $fillable=['name','abreviation'];
+
+	public function tickets(){
+		return $this->hasMany('App\Ticket');
+	}
 }

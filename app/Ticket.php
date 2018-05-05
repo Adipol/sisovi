@@ -29,4 +29,7 @@ class Ticket extends Model
 		return $this->belongsTo('App\User','applicant_id');
 	}
 	
+	public function area(){
+		return $this->belongsTo('App\Area','area_id');
+	}
 }

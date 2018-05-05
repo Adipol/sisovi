@@ -23,10 +23,12 @@ class CreateTicketsTable extends Migration
 			$table->text('operational_obs')->nullable();//obs operacional
 			$table->string('file')->default('/');
 			$table->integer('patio');
-			$table->string('area');
 
 			$table->integer('applicant_id')->unsigned();	//solicitante id
 			$table->foreign('applicant_id')->references('id')->on('users');
+
+			$table->integer('area_id')->unsigned();
+			$table->foreign('area_id')->references('id')->on('areas');
 
 			$table->integer('code_id')->unsigned()->default(1);
 			$table->foreign('code_id')->references('id')->on('codes');

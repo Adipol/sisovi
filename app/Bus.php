@@ -20,5 +20,4 @@ class Bus extends Model
 	public function tickets(){
 		return $this->hasMany('App\Ticket');
 	}
-
 }

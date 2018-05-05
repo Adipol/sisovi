@@ -36,11 +36,11 @@ class TicketController extends Controller
 	 }
 
 	 public function create(){
-		 $areas=Area::pluck('name','abreviation');
-		 $applicant=auth()->user();
-		 $buses=Bus::pluck('code','id');
-		 $patios=Patio::pluck('name','id');
-		 $levels=Level::pluck('name','id');
+		 $areas     = Area::pluck('name','id');
+		 $applicant = auth()->user();
+		 $buses     = Bus::pluck('code','id');
+		 $patios    = Patio::pluck('name','id');
+		 $levels    = Level::pluck('name','id');
 		 
 		 return view('tickets.create')->with(compact('areas','applicant','buses','patios','levels'));
 	 }
@@ -56,13 +56,15 @@ class TicketController extends Controller
 		 $ticket->patio=$request->input('patio_id');
 		 $ticket->level_id=$request->input('level_id');
 		 $ticket->bus_id=$request->input('bus_id');
-		 $ticket->area=$request->input('area_id');
+		 $ticket->area_id=$request->input('area_id');
 		 $var1=$request->input('area_id');
 
-		 $vart=Ticket::where('area','=',$var1)->count();
+		 $vart=Ticket::where('area_id','=',$var1)->count();
 
 		 $varto=$vart+1;
-		 $vartrans=$var1.'-'.(string)$varto; 
+		 $area_abre=Area::find($var1);
+		 
+		 $vartrans=$area_abre->abreviation . '-' . (string)$varto; 
 		 $ticket->code_area=$vartrans;   
 
 		 $ticket->driver=$request->input('driver');

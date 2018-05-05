@@ -21,6 +21,7 @@
 
 				<div class="card-body">
 					{!! Form::open(['route'=>'tickets.store']) !!}
+		
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Solicitante</label>
@@ -29,9 +30,9 @@
 						<div class="form-group col-12 col-md-6">
 							<label>Area</label>
 							<select name="area_id" class="form-control">
-							  <option value="">Seleccione Area</option>
-							  @foreach($areas as $abreviation => $area)
-								<option {{  old('area_id') === $abreviation ? 'selected' : '' }} value="{{ $abreviation }}">{{ $area }}</option>
+							 	 	<option value="">Seleccione Area</option>
+							  	@foreach($areas as $id => $area)
+									<option {{  old('area_id') === $id ? 'selected' : '' }} value="{{ $id }}">{{ $area }}</option>
 								@endforeach
 							</select>
 						 </div>
