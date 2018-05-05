@@ -7,7 +7,7 @@
 		<div class="col-12 col-md-12 ">
 			<div class="card">
 				<div class="card-header">
-					<h2>Tickets</h2>
+					<h2>Tickets Finalizados</h2>
 				</div>
 				<div class="card-body">
 					<hr>
@@ -55,11 +55,6 @@
 											<td>{{ $ticket->code_name }}</td>
 											<td>
 													<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
-												@if($ticket->file!='/')													
-													<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-info">
-														<i class="fas fa-download"></i>
-													</a>
-												@endif
 											</td>
 										</tr>
 										@empty
