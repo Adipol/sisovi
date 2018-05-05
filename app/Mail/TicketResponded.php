@@ -8,21 +8,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewTicket extends Mailable
+class TicketResponded extends Mailable
 {
     use Queueable, SerializesModels;
 
 	private $ticket;
-	private $solicitante_name;
+	private $operational_name;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Ticket $ticket,$solicitante_name)
+    public function __construct(Ticket $ticket,$operational_name)
     {
 		$this->ticket = $ticket;
-		$this->solicitante_name=$solicitante_name;
+		$this->operational_name=$operational_name;
     }
 
     /**
@@ -33,9 +34,9 @@ class NewTicket extends Mailable
     public function build()
     {
 		return  $this
-		->subject(__("Nueva solicitud de video"))
-		->markdown('emails.new_ticket')
+		->subject(__("Ticket de solicitud respondido"))
+		->markdown('emails.responded_ticket')
 		->with('ticket', $this->ticket)
-		->with('solicitante', $this->solicitante_name);
+		->with('operational', $this->operational_name);
     }
 }

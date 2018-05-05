@@ -20,7 +20,8 @@
 				@endif
 
 				<div class="card-body" >
-		  		{!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST','files'=>true])!!}
+			    {!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST','files'=>true])!!}
+				  <input type="hidden" name="applicant_id" value="{{$ticket->applicant_id}}">
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Codigo de Ticket</label>
@@ -30,7 +31,7 @@
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Solicitante</label>
-							<input type="text" name="applicant_id" class="form-control"  value="{{ $ticket->applicant_name }}" readonly >
+							<input type="text" name="applicant" class="form-control"  value="{{ $ticket->applicant_name }}" readonly >
 						</div>
 						{{-- <div class="form-group col-12 col-md-6">
 								<label for="">Area</label>

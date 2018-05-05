@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Mail\NewTicket;
+use App\Mail\TicketResponded;
+use App\Mail\ResendTicket;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TicketStoreRequest;
 use App\Http\Requests\TicketUpdateRequest;
@@ -78,7 +80,7 @@ class TicketController extends Controller
 		 
 		 foreach($operationals as $operational){
 			Mail::to($operational)->send(new NewTicket($ticket, auth()->user()->name));
-		 }
+		 } 
 		
 		 return redirect()->route('tickets.index')->with('notification','Ticket ingresado exitosamente.');
 	 }
@@ -102,7 +104,7 @@ class TicketController extends Controller
 		->join('levels','tickets.level_id','=','levels.id')
 		->join('codes','tickets.code_id','=','codes.id') 
 		->join('users','tickets.applicant_id','=','users.id')
-		->select('tickets.id as idt','tickets.code_area','users.name as applicant_name','buses.code','patios.name as pname','tickets.driver','tickets.host','levels.name as lname','tickets.incident_date','tickets.applicant_obs','tickets.operational_obs')
+		->select('tickets.id as idt','tickets.code_area','users.name as applicant_name','buses.code','patios.name as pname','tickets.driver','tickets.host','levels.name as lname','tickets.incident_date','tickets.applicant_obs','tickets.operational_obs','tickets.applicant_id')
 		->where('tickets.id','=',$id)
 		->first();
 
@@ -112,7 +114,8 @@ class TicketController extends Controller
 	 public function update(TicketUpdateRequest $request, $id){
 		
 			$ticket=Ticket::find($id);
-			
+			$applicant_id=$request->input('applicant_id');
+			$applicant_email=User::where('id',$applicant_id)->pluck('email')->first();
 			$cod_name=$request->input('cod_name');
 			if($request->hasFile('file')){
 					$file=$request->file('file');
@@ -126,6 +129,9 @@ class TicketController extends Controller
 					$ticket->operational_obs=$request->input('operational_obs');
 					$ticket->save();
 			}
+
+			Mail::to($applicant_email)->send(new TicketResponded($ticket, auth()->user()->name));
+
 		return redirect()->route('tickets.index')->with('notification','archivo ingresado exitosamente.');
 	 }
 
@@ -154,8 +160,10 @@ class TicketController extends Controller
 	 }
 	 
 	 public function restore(Request $request, $file){
+		$operationals=User::where('rol_id','=',3)->pluck('email');
+		
 		if(Storage::disk('ftp')->exists($file)){
-			$ticket=Ticket::where('file','=',$file)->first();
+			$ticket=Ticket::where('file','=',$file)->first();			
 			$user=auth()->user()->id;
 			$userName=auth()->user()->name;
 			Storage::disk('ftp')->put($user. ''.time().'_' . $file, $userName);
@@ -163,6 +171,10 @@ class TicketController extends Controller
 			$ticket->file='/';
 			$ticket->save();
 	
+			foreach($operationals as $operational){
+				Mail::to($operational)->send(new ResendTicket($ticket, auth()->user()->name));
+			} 
+
 			return redirect()->route('tickets.index')->with('notification','Ticket reenviado exitosamente.');
 		}else{
 			return back()->with('danger','Archivo no encontrado.');

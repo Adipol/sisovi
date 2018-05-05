@@ -23,5 +23,9 @@ class CodesTableSeeder extends Seeder
 		Code::create([
 			'name'=>'FINALIZADO',
 		]);
+
+		Code::create([
+			'name'=>'REENVIADO',
+		]);
     }
 }

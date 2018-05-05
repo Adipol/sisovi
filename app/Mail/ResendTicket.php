@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewTicket extends Mailable
+class ResendTicket extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,8 +33,8 @@ class NewTicket extends Mailable
     public function build()
     {
 		return  $this
-		->subject(__("Nueva solicitud de video"))
-		->markdown('emails.new_ticket')
+		->subject(__("Reenvio solicitud de video"))
+		->markdown('emails.resend_ticket')
 		->with('ticket', $this->ticket)
 		->with('solicitante', $this->solicitante_name);
     }
