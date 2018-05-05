@@ -24,5 +24,9 @@ class Ticket extends Model
 	public function code(){
 		return $this->belongsTo('App\Code','code_id');
 	}
+
+	public function user(){
+		return $this->belongsTo('App\User','applicant_id');
+	}
 	
 }

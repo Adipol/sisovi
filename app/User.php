@@ -27,6 +27,10 @@ class User extends Authenticatable
 		return $this->belongsTo('App\Rol');
 	}
 
+	public function tickets(){
+		return $this->hasMany('App\Tickets');
+	}
+
 	public function getIsAdminAttribute(){
 		return $this->rol_id==1;
 	}

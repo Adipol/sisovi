@@ -57,13 +57,13 @@
 								</thead>
 								<tbody>
 									@foreach($tickets as $key=>$ticket)
-										<tr @if($ticket->level_name=='Normal' && $ticket->code_id==2 ) 
+										<tr @if($ticket->level->name=='Normal' && $ticket->code_id==2 ) 
 												class="table-success"
 											@else
-												@if($ticket->level_name=='Alto' && $ticket->code_id==1)
+												@if($ticket->level->name=='Alto' && $ticket->code_id==1)
 													class="table-danger"
 													@else
-													@if($ticket->level_name=='Alto' && $ticket->code_id==2)
+													@if($ticket->level->name=='Alto' && $ticket->code_id==2)
 													   class="table-success"
 													   @endif
 												 @endif 
@@ -71,21 +71,20 @@
 											
 											<td style="padding-left:15px;">{{ $key+1 }}</td>
 											<td>{{ $ticket->code_area }}</td>
-											<td>{{ $ticket->level_name }}</td>
-											<td>{{ $ticket->applicant_name }} </td>
-											<td>{{ $ticket->patio_name }}</td>
+											<td>{{ $ticket->level->name }}</td>
+											<td>{{ $ticket->user->name }}</td>
+											<td>{{ $ticket->bus->patio->name }}</td>
 											<td>{{ $ticket->incident_date->formatLocalized('%A %d %B %Y')}}</td>
 											<td>{{ $ticket->created_at->formatLocalized('%A %d %B %Y')}}</td>
 
 											<td>@if($ticket->code_id==2 || $ticket->code_id==3 )Finalizado @else {{$ticket->created_at->diffForHumans()}} @endif </td>
 											
-											<td>{{ $ticket->code_name }}</td>
+											<td>{{ $ticket->code->name }}</td>
 											<td>
 											@if($ticket->file=='/')	
 												<a href="{{ route('tickets.edit',$ticket->id) }}" title="Subir archivo" class="btn  btn-sm btn-primary"><i class="fas fa-upload"></i></a>
 												@else
 												<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
-
 											@endif	
 												
                                             @if($ticket->file!='/')																	

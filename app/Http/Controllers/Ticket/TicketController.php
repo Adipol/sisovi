@@ -30,16 +30,7 @@ class TicketController extends Controller
 	}
 	
 	 public function index(){
-		$tickets=Ticket::with('bus.patio','level','code')->get();
-		dd ($tickets);
-
-/* 		$tickets=Ticket::join('buses','tickets.bus_id','=','buses.id')
-		->join('patios','buses.patio_id','=','patios.id')
-		->join('levels','tickets.level_id','=','levels.id')
-		->join('codes','tickets.code_id','=','codes.id')
-		->join('users','tickets.applicant_id','=','users.id')
-		->select('tickets.id','tickets.code_area','levels.name as level_name','users.name as applicant_name','patios.name as patio_name','tickets.incident_date','codes.name as code_name','tickets.created_at','tickets.code_id','tickets.file')
-		->paginate(10); */
+		$tickets=Ticket::with('bus.patio','level','code','user')->where('code_id','<>',3)->paginate(15);
 	
 		return view('tickets.index')->with(compact('tickets')); 
 	 }
