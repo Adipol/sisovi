@@ -40,9 +40,11 @@ class UserController extends Controller
 		$ucm=auth()->user();
 		$user->ucm=$ucm->id;
 		$user->save();
-
-		Mail::to($email)->send(new NewUser($user));
-
+		try{
+			Mail::to($email)->send(new NewUser($user));
+		}catch (\Exception $exception) {
+			$exception->getMessage();
+		}
 		return redirect()->route('users.index')->with('notification','Usuario ingresado exitosamente.');
 	}
 
