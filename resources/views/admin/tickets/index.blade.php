@@ -38,6 +38,7 @@
 									<th>Fecha de Incidente</th>
 									<th>Fecha de Solicitud</th>
 									<th>Estado de Ticket</th>
+									<th>Nombre del archivo</th>
 									<th width="130px">Opción</th>
 									</tr>
 								</thead>
@@ -52,12 +53,13 @@
 											<td>{{ $ticket->incident_date->formatLocalized('%A %d %B %Y')}}</td>
 											<td>{{ $ticket->created_at->formatLocalized('%A %d %B %Y')}}</td>
 											<td>{{ $ticket->code->name }}</td>
+											<td>{{ $ticket->file ==='/' ? 'No existe el archivo' : $ticket->file }}</td>
 											<td>
-													<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
+												<a href="{{ route('atickets.deletefile',$ticket->id) }}" onclick="return confirm('Esta seguro de eliminar el archivo?')"  title="Eliminar archivo" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
 											</td>
 										</tr>
-										@empty
-										<tr><td colspan="9" style="text-align: center;">Sin registros</td></tr>
+									@empty
+										<tr><td colspan="8" style="text-align: center;">Sin registros</td></tr>
 									@endforelse
 								</tbody>
 							</table>

@@ -40,6 +40,7 @@ Route::group(['middleware' => 'admin','namespace'=>'Admin'], function () {
 	Route::get('/buses/{id}/restaurar','BusController@restore')->name('buses.restore');
 
 	Route::get('/atickets/','TicketAdminController@index')->name('atickets.index');
+	Route::get('/atickets/{id}/deletefile','TicketAdminController@deletefile')->name('atickets.deletefile');
 });
 
 
@@ -52,6 +53,6 @@ Route::post('/tickets/{id}/update','Ticket\TicketController@update')->name('tick
 Route::get('/tickets/{file}/download','Ticket\TicketController@download')->name('tickets.download');
 Route::get('/tickets/{id}/restore','Ticket\TicketController@restore')->name('tickets.restore');
 Route::get('/tickets/{id}/finished','Ticket\TicketController@finished')->name('tickets.finished');
+Route::get('/tickets/finished','Ticket\TicketController@indexfinished')->name('tickets.indexfinished');
 
-Route::get('/tickets/finished','Ticket\FinishedController@index')->name('tickets.tofinished');
 

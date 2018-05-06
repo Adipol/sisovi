@@ -82,7 +82,7 @@ class TicketController extends Controller
 	 }
 
 	 public function show($id){
-		$ticket=Ticket::where('id',$id)->with('bus.patio','level','code','user')->where('code_id','<>',3)->first();
+		$ticket=Ticket::where('id',$id)->with('bus.patio','level','code','user')->first();
 
 		return view('tickets.show')->with(compact('ticket'));
 	 }
@@ -149,6 +149,7 @@ class TicketController extends Controller
 			$user=auth()->user()->id;
 			$userName=auth()->user()->name;
 			Storage::disk('ftp')->put($user. ''.time().'_' . $file, $userName);
+			Storage::disk('ftp')->delete($file);
 			$ticket->code_id=4;
 			$ticket->file='/';
 			$ticket->save();
@@ -172,4 +173,10 @@ class TicketController extends Controller
 		return redirect()->route('tickets.index')->with('notification','Ticket finalizado.');
 
 	 }
+
+	 public function indexfinished(){
+		$tickets=Ticket::with('bus.patio','level','code','user')->where('code_id',3)->paginate(15);
+
+		return view('tickets.finished.index')->with(compact('tickets'));
+	}
 }
