@@ -74,10 +74,14 @@ class TicketController extends Controller
 		 $ticket->ucm=$ucm->id;
 		 $ticket->save();
 		 
-		 foreach($operationals as $operational){
-			Mail::to($operational)->send(new NewTicket($ticket, auth()->user()->name));
-		 } 
-		
+		 try{
+			foreach($operationals as $operational){
+				Mail::to($operational)->send(new NewTicket($ticket, auth()->user()->name));
+			 }
+		 }catch (\Exception $exception) {
+	    	$exception->getMessage();
+		 }
+
 		 return redirect()->route('tickets.index')->with('notification','Ticket ingresado exitosamente.');
 	 }
 
@@ -111,8 +115,11 @@ class TicketController extends Controller
 					$ticket->operational_obs=$request->input('operational_obs');
 					$ticket->save();
 			}
-
-			Mail::to($applicant_email)->send(new TicketResponded($ticket, auth()->user()->name));
+			try{
+				Mail::to($applicant_email)->send(new TicketResponded($ticket, auth()->user()->name));
+			}catch (\Exception $exception) {
+	    	$exception->getMessage();
+		 }
 
 		return redirect()->route('tickets.index')->with('notification','archivo ingresado exitosamente.');
 	 }
@@ -153,10 +160,14 @@ class TicketController extends Controller
 			$ticket->code_id=4;
 			$ticket->file='/';
 			$ticket->save();
-	
-			foreach($operationals as $operational){
+			
+			try{
+				foreach($operationals as $operational){
 				Mail::to($operational)->send(new ResendTicket($ticket, auth()->user()->name));
-			} 
+				} 
+			}catch (\Exception $exception) {
+				$exception->getMessage();
+			}
 
 			return redirect()->route('tickets.index')->with('notification','Ticket reenviado exitosamente.');
 		}else{

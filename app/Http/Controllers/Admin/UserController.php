@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewUser;
 
 use App\User;
 use App\Rol;
@@ -27,6 +29,7 @@ class UserController extends Controller
 		$user = new User();
 		$user->name=$request->input('name');
 		$user->email=$request->input('email');
+		$email=$request->input('email');
 		$password=$request->input('password');
 		
 		if ($password)
@@ -37,6 +40,8 @@ class UserController extends Controller
 		$ucm=auth()->user();
 		$user->ucm=$ucm->id;
 		$user->save();
+
+		Mail::to($email)->send(new NewUser($user));
 
 		return redirect()->route('users.index')->with('notification','Usuario ingresado exitosamente.');
 	}
