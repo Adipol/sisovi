@@ -82,14 +82,7 @@ class TicketController extends Controller
 	 }
 
 	 public function show($id){
-		$ticket=Ticket::join('buses','tickets.bus_id','=','buses.id')
-		->join('patios','buses.patio_id','=','patios.id')
-		->join('levels','tickets.level_id','=','levels.id')
-		->join('codes','tickets.code_id','=','codes.id') 
-		->join('users','tickets.applicant_id','=','users.id')
-		->select('tickets.id as idt','tickets.code_area','users.name as applicant_name','buses.code','patios.name as pname','tickets.driver','tickets.host','levels.name as lname','tickets.incident_date','tickets.applicant_obs','tickets.file')
-		->where('tickets.id','=',$id)
-		->first();
+		$ticket=Ticket::where('id',$id)->with('bus.patio','level','code','user')->where('code_id','<>',3)->first();
 
 		return view('tickets.show')->with(compact('ticket'));
 	 }

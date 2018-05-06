@@ -71,7 +71,6 @@
 						</div>
 					</div>
 
-
 						<div class="form-group">
 							<label for="">Detalle del Incidente</label>
 							<textarea name="applicant_obs" class="form-control" readonly>{{ $ticket->applicant_obs }}</textarea>
@@ -98,7 +97,6 @@
 							<button class="btn btn-sm btn-success" type="submit"><i class="fas fa-plus-circle"></i> Cargar</button>
 							<a href="{{ route('tickets.index') }}" title="Reenviar ticket" class="btn  btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Cancelar</a>
 						</div>
-						
 					{!! Form::close() !!}
 				</div>
 			</div>

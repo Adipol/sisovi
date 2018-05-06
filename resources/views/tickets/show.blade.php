@@ -16,7 +16,7 @@
 				@endif
 
 				<div class="card-body" >
-		  		{!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST'])!!}
+		  		{!! Form::model($ticket,['route'=>['tickets.update',$ticket->id],'method'=>'POST'])!!}
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Codigo de Ticket</label>
@@ -27,26 +27,30 @@
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Solicitante</label>
-							<input type="text" name="applicant_id" class="form-control"  value="{{ $ticket->applicant_name }}" readonly>
+							<input type="text" name="applicant_id" class="form-control"  value="{{ $ticket->user->name }}" readonly>
 						</div>
+						<div class="form-group col-12 col-md-6">
+							<label for="">Area</label>
+							<input type="text" name="area_id" class="form-control"  value="{{ $ticket->area->name}}" readonly >
+					    </div> 
 					</div>
 
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label>Bus</label>
-							<input type="text" name="bus_id" class="form-control"  value="{{ $ticket->code }}" readonly>
+							<input type="text" name="bus_id" class="form-control"  value="{{ $ticket->bus->code }}" readonly>
 						</div>
 		
 						<div class="form-group col-12 col-md-6">
 							<label>Patio</label>
-							<input type="text" name="patio_id" class="form-control"  value="{{ $ticket->pname }}" readonly>
+							<input type="text" name="patio_id" class="form-control"  value="{{ $ticket->bus->patio->name }}" readonly>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label>Grado del Incidente</label>
-							<input type="text" name="lname" class="form-control"  value="{{ $ticket->lname }}" readonly>
+							<input type="text" name="lname" class="form-control"  value="{{ $ticket->level->name }}" readonly>
 						</div>
 			
 						<div class="form-group col-12 col-md-6">
@@ -81,7 +85,6 @@
 							<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-success"><i class="fas fa-download"></i> Descargar archivo</a>
 							<a href="{{ route('tickets.restore',$ticket->file) }}" onclick="return confirm('Esta seguro de reenviar la solicitud?')" title="Reenviar ticket" class="btn  btn-sm btn-info"><i class="fas fa-retweet"></i> Reenviar ticket</a>
 							<a href="{{ route('tickets.index') }}" title="Reenviar ticket" class="btn  btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Cancelar</a>
-
 						</div>				
 					{!! Form::close() !!}
 				</div>
