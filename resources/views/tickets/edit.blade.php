@@ -20,7 +20,7 @@
 				@endif
 
 				<div class="card-body" >
-			    {!! Form::model($ticket,['route'=>['tickets.update',$ticket->idt],'method'=>'POST','files'=>true])!!}
+			    {!! Form::model($ticket,['route'=>['tickets.update',$ticket->id],'method'=>'POST','files'=>true])!!}
 				  <input type="hidden" name="applicant_id" value="{{$ticket->applicant_id}}">
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
@@ -31,28 +31,28 @@
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Solicitante</label>
-							<input type="text" name="applicant" class="form-control"  value="{{ $ticket->applicant_name }}" readonly >
+							<input type="text" name="applicant" class="form-control"  value="{{ $ticket->user->name}}" readonly >
 						</div>
-						{{-- <div class="form-group col-12 col-md-6">
-								<label for="">Area</label>
-								<input type="text" name="area_id" class="form-control"  value="{{ $ticket->area_name}}" readonly >
-					    </div> --}}
+						<div class="form-group col-12 col-md-6">
+							<label for="">Area</label>
+							<input type="text" name="area_id" class="form-control"  value="{{ $ticket->area->name}}" readonly >
+					    </div> 
 					</div>
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label>Bus</label>
-							<input type="text" name="bus_id" class="form-control"  value="{{ $ticket->code }}" readonly >
+							<input type="text" name="bus_id" class="form-control"  value="{{ $ticket->bus->code }}" readonly >
 						</div>
 						<div class="form-group col-12 col-md-6">
 							<label>Patio</label>
-							<input type="text" name="patio_id" class="form-control"  value="{{ $ticket->pname }}" readonly >
+							<input type="text" name="patio_id" class="form-control"  value="{{ $ticket->bus->patio->name }}" readonly >
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label>Grado del Incidente</label>
-							<input type="text" name="lname" class="form-control"  value="{{ $ticket->lname }}" readonly >
+							<input type="text" name="lname" class="form-control"  value="{{ $ticket->level->name }}" readonly >
 						</div>
 						<div class="form-group col12 col-md-6">
 							<label for="">Fecha del Incidente</label>
