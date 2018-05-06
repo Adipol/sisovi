@@ -14,7 +14,8 @@ Route::group(['middleware' => 'admin','namespace'=>'Admin'], function () {
 	Route::post('/usuarios/{id}/update','UserController@update')->name('users.update');
 	Route::get('/usuarios/{id}/eliminar','UserController@delete')->name('users.delete');
 	Route::get('/usuarios/{id}/restaurar','UserController@restore')->name('users.restore');
-	
+
+
 	Route::get('/areas','AreaController@index')->name('areas.index');
 	Route::get('/areas/crear','AreaController@create')->name('areas.create');
 	Route::post('/areas/ver','AreaController@store')->name('areas.store');
@@ -43,6 +44,8 @@ Route::group(['middleware' => 'admin','namespace'=>'Admin'], function () {
 	Route::get('/atickets/{id}/deletefile','TicketAdminController@deletefile')->name('atickets.deletefile');
 });
 
+Route::get('/profile','Admin\ProfileController@index')->name('profile.index');
+Route::put('/profile', 'Admin\ProfileController@update')->name('profile.update');
 
 Route::get('/tickets','Ticket\TicketController@index')->name('tickets.index');
 Route::get('/tickets/create','Ticket\TicketController@create')->name('tickets.create');
