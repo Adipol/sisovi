@@ -97,7 +97,9 @@
 									@endforeach
 								</tbody>
 							</table>
-							{{ $tickets->render()}}
+							<div class="row justify-content-center">
+								{{ $tickets->links() }}
+							</div>
 						</div>
 					</div>
 			    </div>
