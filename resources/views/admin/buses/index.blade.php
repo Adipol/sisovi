@@ -61,11 +61,12 @@
 										</tr>
 									@endforeach
 								</tbody>
-							</table>
-							<div>	 {{ $buses->render()}}</div>
-							
+							</table>						
 						</div>
-					</div>
+						<div class="row justify-content-center">
+							{{ $buses->links() }}
+						</div>	
+				</div>
 			</div>
 		
 		</div>

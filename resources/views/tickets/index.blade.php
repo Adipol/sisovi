@@ -99,9 +99,9 @@
 									@endforelse
 								</tbody>
 							</table>
-							<div class="row justify-content-center">
-								{{ $tickets->links() }}
-							</div>
+						</div>
+						<div class="row justify-content-center">
+							{{ $tickets->links() }}
 						</div>
 					</div>
 			    </div>

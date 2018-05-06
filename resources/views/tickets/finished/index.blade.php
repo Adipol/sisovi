@@ -61,7 +61,9 @@
 									@endforelse
 								</tbody>
 							</table>
-							{{ $tickets->render()}}
+						</div>
+						<div class="row justify-content-center">
+							{{ $tickets->links() }}
 						</div>
 					</div>
 			    </div>

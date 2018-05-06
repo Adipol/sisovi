@@ -61,13 +61,13 @@
 										</tr>
 									@endforeach
 								</tbody>
-							</table>
-							<div>{{ $patios->render()}}</div>
-							
+							</table>							
 						</div>
-					</div>
+						<div class="row justify-content-center">
+							{{ $patios->links() }}
+						</div>
+				</div>
 			</div>
-		
 		</div>
 	</div>
 </div>

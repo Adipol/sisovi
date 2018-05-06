@@ -24,12 +24,12 @@
 					 
 						<div class="form-group">
 							<label for="">Nombre</label>
-							<input type="text" name="name" class="form-control" value="{{$user->name }}" >
+							<input type="text" name="name" class="form-control" value="{{$user->name }}" readonly>
 						</div>
 
 						<div class="form-group">
 								<label for="">Correo Electronico</label>
-								<input type="mail" name="email" class="form-control" value="{{ $user->email }}">
+								<input type="mail" name="email" class="form-control" value="{{ $user->email }}" readonly>
 						</div>
 						
 						<div class="form-group">

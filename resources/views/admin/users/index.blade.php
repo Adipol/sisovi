@@ -62,11 +62,12 @@
 									@endforeach
 								</tbody>
 							</table>
-							{{ $users->render()}}
+						</div>
+						<div class="row justify-content-center">
+							{{ $users->links() }}
 						</div>
 					</div>
-			</div>
-		
+			</div>	
 		</div>
 	</div>
 </div>

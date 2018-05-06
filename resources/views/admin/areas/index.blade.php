@@ -61,11 +61,12 @@
 										</tr>
 									@endforeach
 								</tbody>
-							</table>
-							<div>{{ $areas->render()}}</div>
-							
+							</table>	
 						</div>
-					</div>
+						<div class="row justify-content-center">
+							{{ $areas->links() }}
+						</div>
+				</div>
 			</div>
 		
 		</div>
