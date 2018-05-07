@@ -24,11 +24,6 @@ use App\User;
 
 class TicketController extends Controller
 {
-	public function __construct()
-    {
-        $this->middleware('auth');
-	}
-	
 	 public function index(){
 		$tickets=Ticket::with('bus.patio','level','code','user')->where('code_id','<>',3)->paginate(15);
 	

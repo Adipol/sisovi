@@ -6,6 +6,7 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::group(['middleware' => 'admin','namespace'=>'Admin'], function () {   
 	Route::get('/usuarios','UserController@index')->name('users.index');
 	Route::get('/usuarios/create','UserController@create')->name('users.create');
@@ -14,7 +15,6 @@ Route::group(['middleware' => 'admin','namespace'=>'Admin'], function () {
 	Route::post('/usuarios/{id}/update','UserController@update')->name('users.update');
 	Route::get('/usuarios/{id}/eliminar','UserController@delete')->name('users.delete');
 	Route::get('/usuarios/{id}/restaurar','UserController@restore')->name('users.restore');
-
 
 	Route::get('/areas','AreaController@index')->name('areas.index');
 	Route::get('/areas/crear','AreaController@create')->name('areas.create');
@@ -44,18 +44,28 @@ Route::group(['middleware' => 'admin','namespace'=>'Admin'], function () {
 	Route::get('/atickets/{id}/deletefile','TicketAdminController@deletefile')->name('atickets.deletefile');
 });
 
-Route::get('/profile','Admin\ProfileController@index')->name('profile.index');
-Route::put('/profile', 'Admin\ProfileController@update')->name('profile.update');
+Route::group(['middleware' => ['auth']], function () {
+	Route::get('/profile','Admin\ProfileController@index')->name('profile.index');
+	Route::put('/profile', 'Admin\ProfileController@update')->name('profile.update');
+});
 
-Route::get('/tickets','Ticket\TicketController@index')->name('tickets.index');
-Route::get('/tickets/create','Ticket\TicketController@create')->name('tickets.create');
-Route::post('/tickets/store','Ticket\TicketController@store')->name('tickets.store');
-Route::get('/tickets/{id}/editar','Ticket\TicketController@edit')->name('tickets.edit');
-Route::get('/tickets/{id}/ver','Ticket\TicketController@show')->name('tickets.show');
-Route::post('/tickets/{id}/update','Ticket\TicketController@update')->name('tickets.update');
-Route::get('/tickets/{file}/download','Ticket\TicketController@download')->name('tickets.download');
-Route::get('/tickets/{id}/restore','Ticket\TicketController@restore')->name('tickets.restore');
-Route::get('/tickets/{id}/finished','Ticket\TicketController@finished')->name('tickets.finished');
-Route::get('/tickets/finished','Ticket\TicketController@indexfinished')->name('tickets.indexfinished');
+Route::namespace('Ticket')->group(function () {
+	Route::group(['middleware' => ['auth']], function () {
+		Route::get('/tickets','TicketController@index')->name('tickets.index');
+		Route::post('/tickets/store','TicketController@store')->name('tickets.store');
+		Route::get('/tickets/{id}/editar','TicketController@edit')->name('tickets.edit');
+		Route::get('/tickets/{id}/ver','TicketController@show')->name('tickets.show');
+		Route::get('/tickets/{file}/download','TicketController@download')->name('tickets.download');
+		Route::post('/tickets/{id}/update','TicketController@update')->name('tickets.update');	
+		Route::get('/tickets/finished','TicketController@indexfinished')->name('tickets.indexfinished');
+
+		Route::group(['middleware' => ['sol']], function () {
+			Route::get('/tickets/create','TicketController@create')->name('tickets.create');
+			Route::get('/tickets/{id}/restore','TicketController@restore')->name('tickets.restore');
+			Route::get('/tickets/{id}/finished','TicketController@finished')->name('tickets.finished');
+		});	
+	});
+});
+
 
 

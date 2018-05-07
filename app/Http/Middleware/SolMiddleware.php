@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AdminMiddleware
+class SolMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-		if (auth()->check() && auth()->user()->rol_id == (int) 1) {
+		if (auth()->check() && auth()->user()->rol_id == (int) 2) {
 			return $next($request);
 		}		
 		return redirect()->guest('/');
