@@ -75,16 +75,18 @@
 							<label for="">Detalle del Incidente</label>
 							<textarea name="applicant_obs" class="form-control" readonly>{{ $ticket->applicant_obs }}</textarea>
 						</div>
-
+						@if($ticket->operational_obs!='')
+							<div class="form-group">
+								<label for="">Observaciones</label>
+								<textarea name="operational_obs" class="form-control" readonly>{{$ticket->operational_obs }}</textarea>
+							</div>
+						@endif
 						<div class="form-group">
-							<label for="">Observaciones</label>
-							<textarea name="operational_obs" class="form-control" readonly>{{$ticket->operational_obs }}</textarea>
-						</div>
-
-						<div class="form-group">
-							<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-success"><i class="fas fa-download"></i> Descargar archivo</a>
-							<a href="{{ route('tickets.restore',$ticket->file) }}" onclick="return confirm('Esta seguro de reenviar la solicitud?')" title="Reenviar ticket" class="btn  btn-sm btn-info"><i class="fas fa-retweet"></i> Reenviar ticket</a>
-							<a href="{{ route('tickets.index') }}" title="Reenviar ticket" class="btn  btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Cancelar</a>
+							@if (auth()->user()->is_sol && $ticket->file!='/')		
+								<a href="{{ route('tickets.download',$ticket->file) }}" title="Descargar archivo" class="btn btn-sm  btn-success"><i class="fas fa-download"></i> Descargar archivo</a>
+								<a href="{{ route('tickets.restore',$ticket->file) }}" onclick="return confirm('Esta seguro de reenviar la solicitud?')" title="Reenviar ticket" class="btn  btn-sm btn-info"><i class="fas fa-retweet"></i> Reenviar ticket</a>
+							@endif
+							<a href="{{ route('tickets.index') }}" title="Reenviar ticket" class="btn  btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Atrás</a>
 						</div>				
 					{!! Form::close() !!}
 				</div>

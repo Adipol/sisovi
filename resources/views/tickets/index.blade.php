@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
 <div class="container">
 	<div class="row">
 		<div class="col-12 col-md-12">
@@ -11,7 +10,7 @@
 				</div>
 				<div class="card-body">
 					@if(auth()->user()->is_sol)
-					 <a href="{{ route('tickets.create') }}" class="btn btn-primary" style="margin-botton: 15px;"><i class="fas fa-plus-circle"></i> Crear Ticket</a>
+						 <a href="{{ route('tickets.create') }}" class="btn btn-primary" style="margin-botton: 15px;"><i class="fas fa-plus-circle"></i> Crear Ticket</a>
 					 @endif
 					<hr>
 					<div class="alert-custom">
@@ -27,7 +26,6 @@
 							</div>
 						@endif
 						
-				
 						@if (count($errors)>0)
 							<div class="alert alert-warning">
 								<ul>
@@ -81,16 +79,18 @@
 										
 										<td>{{ $ticket->code->name }}</td>
 										<td>
-										@if($ticket->file=='/')	
-											<a href="{{ route('tickets.edit',$ticket->id) }}" title="Subir archivo" class="btn  btn-sm btn-primary"><i class="fas fa-upload"></i></a>
+										@if(auth()->user()->is_ope && $ticket->file=='/')	
+											<a href="{{ route('tickets.edit',$ticket->id) }}" title="Subir archivo" class="btn  btn-sm btn-primary">
+												<i class="fas fa-upload"></i>
+											</a>
 											@else
-											<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
+											<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success">
+												<i class="fas fa-eye"></i>
+											</a>
 										@endif	
 											
-										@if($ticket->file!='/')																	
+										@if(auth()->user()->is_sol && $ticket->file!='/')		
 											<a href="{{ route('tickets.finished',$ticket->id) }}" onclick="return confirm('Esta seguro de finalizar la solicitud?')" title="Finalizar ticket" class="btn  btn-sm btn-danger"><i class="fas fa-check"></i></a>
-											@else
-											
 										@endif
 										</td>
 									</tr>
@@ -109,5 +109,3 @@
 	</div>
 </div>
 @endsection()
-
-

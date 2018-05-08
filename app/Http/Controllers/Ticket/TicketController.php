@@ -154,6 +154,7 @@ class TicketController extends Controller
 			Storage::disk('ftp')->delete($file);
 			$ticket->code_id=4;
 			$ticket->file='/';
+			$ticket->operational_obs='';
 			$ticket->save();
 			
 			try{

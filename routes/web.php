@@ -51,17 +51,20 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::namespace('Ticket')->group(function () {
 	Route::group(['middleware' => ['auth']], function () {
-		Route::get('/tickets','TicketController@index')->name('tickets.index');
-		Route::post('/tickets/store','TicketController@store')->name('tickets.store');
-		Route::get('/tickets/{id}/editar','TicketController@edit')->name('tickets.edit');
-		Route::get('/tickets/{id}/ver','TicketController@show')->name('tickets.show');
-		Route::get('/tickets/{file}/download','TicketController@download')->name('tickets.download');
-		Route::post('/tickets/{id}/update','TicketController@update')->name('tickets.update');	
+		Route::get('/tickets','TicketController@index')->name('tickets.index');		
+		Route::get('/tickets/{id}/ver','TicketController@show')->name('tickets.show');		
 		Route::get('/tickets/finished','TicketController@indexfinished')->name('tickets.indexfinished');
+		
+		Route::group(['middleware' => ['ope']], function () {
+			Route::get('/tickets/{id}/editar','TicketController@edit')->name('tickets.edit');
+			Route::post('/tickets/{id}/update','TicketController@update')->name('tickets.update');
+		});
 
 		Route::group(['middleware' => ['sol']], function () {
 			Route::get('/tickets/create','TicketController@create')->name('tickets.create');
+			Route::post('/tickets/store','TicketController@store')->name('tickets.store');
 			Route::get('/tickets/{id}/restore','TicketController@restore')->name('tickets.restore');
+			Route::get('/tickets/{file}/download','TicketController@download')->name('tickets.download');
 			Route::get('/tickets/{id}/finished','TicketController@finished')->name('tickets.finished');
 		});	
 	});

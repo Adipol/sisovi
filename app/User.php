@@ -40,6 +40,10 @@ class User extends Authenticatable
 		return $this->rol_id==2;
 	}
 
+	public function getIsOpeAttribute(){
+		return $this->rol_id==3;
+	}
+
 	public function sendPasswordResetNotification($token){
 		$this->notify(new ResetPasswordNotification($token));
 	}
