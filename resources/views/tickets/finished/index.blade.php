@@ -53,7 +53,7 @@
 											<td>{{ $ticket->created_at->formatLocalized('%A %d %B %Y')}}</td>
 											<td>{{ $ticket->code->name }}</td>
 											<td>
-													<a href="{{ route('tickets.show',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
+													<a href="{{ route('tickets.showf',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
 											</td>
 										</tr>
 										@empty

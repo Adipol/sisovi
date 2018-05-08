@@ -54,7 +54,8 @@ Route::namespace('Ticket')->group(function () {
 		Route::get('/tickets','TicketController@index')->name('tickets.index');		
 		Route::get('/tickets/{id}/ver','TicketController@show')->name('tickets.show');		
 		Route::get('/tickets/finished','TicketController@indexfinished')->name('tickets.indexfinished');
-		
+		Route::get('/tickets/{id}/verf','TicketController@showf')->name('tickets.showf');
+
 		Route::group(['middleware' => ['ope']], function () {
 			Route::get('/tickets/{id}/editar','TicketController@edit')->name('tickets.edit');
 			Route::post('/tickets/{id}/update','TicketController@update')->name('tickets.update');

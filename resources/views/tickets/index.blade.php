@@ -55,13 +55,13 @@
 								</thead>
 								<tbody>
 									@forelse ($tickets as $key=>$ticket)
-									<tr @if($ticket->level->name=='Normal' && $ticket->code_id==2 ) 
+									<tr @if($ticket->level->name=='Normal' && $ticket->code_id==2) 
 											class="table-success"
 										@else
-											@if($ticket->level->name=='Alto' && $ticket->code_id==1)
+											@if(($ticket->level->name=='Alto' && $ticket->code_id==1) || ($ticket->level->name=='Alto' && $ticket->code_id==4))
 												class="table-danger"
 												@else
-												@if($ticket->level->name=='Alto' && $ticket->code_id==2)
+												   @if($ticket->level->name=='Alto' && $ticket->code_id==2)
 												   class="table-success"
 												   @endif
 											 @endif 

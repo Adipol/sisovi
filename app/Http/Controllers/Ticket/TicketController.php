@@ -186,4 +186,10 @@ class TicketController extends Controller
 
 		return view('tickets.finished.index')->with(compact('tickets'));
 	}
+
+	public function showf($id){
+		$ticket=Ticket::where('id',$id)->with('bus.patio','level','code','user')->first();
+
+		return view('tickets.finished.show')->with(compact('ticket'));
+	 }
 }
