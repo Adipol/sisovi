@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
 		]);
 
 		User::create([
-			'name'=>'Solicitante',
+			'name'=>'Operacional',
 			'email'=>'operacional@email.com',
 			'password'=>bcrypt('secret'),
 			'rol_id'=>3,
