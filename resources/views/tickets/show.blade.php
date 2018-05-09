@@ -6,7 +6,7 @@
 		<div class="col-12 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<h5>Ticket</h5> 
+					<h5>Ticket Finalizado</h5> 
 				</div>
 
 				@if (session('danger'))

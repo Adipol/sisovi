@@ -46,12 +46,12 @@
 										<tr>
 											<td style="padding-left:15px;">{{ $key+1 }}</td>
 											<td>{{ $ticket->code_area }}</td>
-											<td>{{ $ticket->level->name }}</td>
-											<td>{{ $ticket->user->name }} </td>
-											<td>{{ $ticket->bus->patio->name }}</td>
+											<td>{{ $ticket->level_name }}</td>
+											<td>{{ $ticket->applicant_name }} </td>
+											<td>{{ $ticket->patio_name }}</td>
 											<td>{{ $ticket->incident_date->formatLocalized('%A %d %B %Y')}}</td>
 											<td>{{ $ticket->created_at->formatLocalized('%A %d %B %Y')}}</td>
-											<td>{{ $ticket->code->name }}</td>
+											<td>{{ $ticket->code_name }}</td>
 											<td>
 													<a href="{{ route('tickets.showf',$ticket->id) }}" title="Ver ticket" class="btn  btn-sm btn-success"><i class="fas fa-eye"></i></a>
 											</td>

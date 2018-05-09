@@ -6,7 +6,7 @@
 		<div class="col-12 col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<h5>Ticket</h5> 
+					<h5>Ticket Finalizado</h5> 
 				</div>
 
 				@if (session('danger'))
@@ -43,7 +43,7 @@
 		
 						<div class="form-group col-12 col-md-6">
 							<label>Patio</label>
-							<input type="text" name="patio_id" class="form-control"  value="{{ $ticket->bus->patio->name }}" readonly>
+							<input type="text" name="patio_id" class="form-control"  value="{{ $patio->name }}" readonly>
 						</div>
 					</div>
 
@@ -62,12 +62,12 @@
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Conductor</label>
-							<input type="text" name="driver" class="form-control"  value="{{ $ticket->driver }}" readonly>
+							<input type="text" name="driver" class="form-control"  value="{{ $driver->full_name }}" readonly>
 						</div>
 			
 						<div class="form-group col-12 col-md-6">
 							<label for="">Anfitrión</label>
-							<input type="text" name="host" class="form-control"  value="{{ $ticket->host }}" readonly>
+							<input type="text" name="host" class="form-control"  value="{{ $host->full_name }}" readonly>
 						</div>
 					</div>
 					

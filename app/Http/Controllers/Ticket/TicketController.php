@@ -26,8 +26,6 @@ use App\Person;
 class TicketController extends Controller
 {
 	 public function index(){
-		//$tickets=Ticket::with('bus','level','code','user')->where('code_id','<>',3)->paginate(15);
-		
 
 		$tickets=Ticket::join('buses','tickets.bus_id','=','buses.id')
 		->join('patios','tickets.patio','=','patios.id')
@@ -36,9 +34,8 @@ class TicketController extends Controller
 		->join('users','tickets.applicant_id','=','users.id')
 		->select('tickets.id','tickets.code_area','levels.name as level_name','users.name as applicant_name','patios.name as patio_name','tickets.incident_date','tickets.created_at','codes.name as code_name','tickets.code_id','tickets.file')
 		->where('tickets.code_id','<>',3)
-		->paginate(10);
+		->paginate(15);
 
-		//dd($tickets);
 		return view('tickets.index')->with(compact('tickets'));
 	 }
 
@@ -94,15 +91,11 @@ class TicketController extends Controller
 
 	 public function show($id){
 		$ticket=Ticket::find($id);
-		dd($id);
 		$patio_id=$ticket->patio;
 		$driver_id=$ticket->driver_id;
 		$host_id=$ticket->host_id;
-
-		dd($patio_id);
-		
-		$patio=Patio::find($patio_id);
-		
+	
+		$patio=Patio::find($patio_id);	
 		$driver=Person::find($driver_id);
 		$host=Person::find($host_id);
 	
@@ -207,14 +200,28 @@ class TicketController extends Controller
 	 }
 
 	 public function indexfinished(){
-		$tickets=Ticket::with('bus.patio','level','code','user')->where('code_id',3)->paginate(15);
+		$tickets=Ticket::join('buses','tickets.bus_id','=','buses.id')
+		->join('patios','tickets.patio','=','patios.id')
+		->join('levels','tickets.level_id','=','levels.id')
+		->join('codes','tickets.code_id','=','codes.id')
+		->join('users','tickets.applicant_id','=','users.id')
+		->select('tickets.id','tickets.code_area','levels.name as level_name','users.name as applicant_name','patios.name as patio_name','tickets.incident_date','tickets.created_at','codes.name as code_name','tickets.code_id','tickets.file')
+		->where('tickets.code_id',3)
+		->paginate(15);
 
 		return view('tickets.finished.index')->with(compact('tickets'));
 	}
 
 	public function showf($id){
-		$ticket=Ticket::where('id',$id)->with('bus.patio','level','code','user')->first();
-
-		return view('tickets.finished.show')->with(compact('ticket'));
+		$ticket=Ticket::find($id);
+		$patio_id=$ticket->patio;
+		$driver_id=$ticket->driver_id;
+		$host_id=$ticket->host_id;
+	
+		$patio=Patio::find($patio_id);	
+		$driver=Person::find($driver_id);
+		$host=Person::find($host_id);
+	
+		return view('tickets.finished.show')->with(compact('ticket','patio','driver','host'));
 	 }
 }
