@@ -21,11 +21,24 @@ use App\Bus;
 use App\Patio;
 use App\Area;
 use App\User;
+use App\Person;
 
 class TicketController extends Controller
 {
 	 public function index(){
-		$tickets=Ticket::join('patios','tickets.patio','=','patios.id')->with('bus','level','code','user')->where('code_id','<>',3)->paginate(15);
+		//$tickets=Ticket::with('bus','level','code','user')->where('code_id','<>',3)->paginate(15);
+		
+
+		$tickets=Ticket::join('buses','tickets.bus_id','=','buses.id')
+		->join('patios','tickets.patio','=','patios.id')
+		->join('levels','tickets.level_id','=','levels.id')
+		->join('codes','tickets.code_id','=','codes.id')
+		->join('users','tickets.applicant_id','=','users.id')
+		->select('tickets.id','tickets.code_area','levels.name as level_name','users.name as applicant_name','patios.name as patio_name','tickets.incident_date','tickets.created_at','codes.name as code_name','tickets.code_id','tickets.file')
+		->where('tickets.code_id','<>',3)
+		->paginate(10);
+
+		//dd($tickets);
 		return view('tickets.index')->with(compact('tickets'));
 	 }
 
@@ -61,8 +74,8 @@ class TicketController extends Controller
 		 $vartrans=$area_abre->abreviation . '-' . (string)$varto; 
 		 $ticket->code_area=$vartrans;   
 
-		 $ticket->driver=$request->input('driver');
-		 $ticket->host=$request->input('host');
+		 $ticket->driver_id=$request->input('driver_id');
+		 $ticket->host_id=$request->input('host_id');
 		 $ucm=auth()->user();
 				 
 		 $ticket->ucm=$ucm->id;
@@ -80,10 +93,20 @@ class TicketController extends Controller
 	 }
 
 	 public function show($id){
-		$ticket=Ticket::where('id',$id)->with('bus','level','code','user')->where('code_id','<>',3)->first();
+		$ticket=Ticket::find($id);
+		dd($id);
 		$patio_id=$ticket->patio;
-		$patio=Patio::where('id',$patio_id)->first();
-		return view('tickets.show')->with(compact('ticket','patio'));
+		$driver_id=$ticket->driver_id;
+		$host_id=$ticket->host_id;
+
+		dd($patio_id);
+		
+		$patio=Patio::find($patio_id);
+		
+		$driver=Person::find($driver_id);
+		$host=Person::find($host_id);
+	
+		return view('tickets.show')->with(compact('ticket','patio','driver','host'));
 	 }
 
 	 public function edit($id){

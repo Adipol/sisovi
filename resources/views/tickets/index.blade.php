@@ -55,29 +55,29 @@
 							</thead>
 								<tbody>
 									@forelse ($tickets as $key=>$ticket)
-									<tr @if($ticket->level->name=='Normal' && $ticket->code_id==2) 
+									<tr @if($ticket->level_name=='Normal' && $ticket->code_id==2) 
 											class="table-success"
 										@else
-											@if(($ticket->level->name=='Alto' && $ticket->code_id==1) || ($ticket->level->name=='Alto' && $ticket->code_id==4))
+											@if(($ticket->level_name==='Alto' && $ticket->code_id==1) || ($ticket->level_name==='Alto' && $ticket->code_id==4))
 												class="table-danger"
 												@else
-												   @if($ticket->level->name=='Alto' && $ticket->code_id==2)
+												   @if($ticket->level_name==='Alto' && $ticket->code_id==2)
 												   class="table-success"
 												   @endif
 											 @endif 
 										@endif>
 										
 										<td style="padding-left:15px;">{{ $key+1 }}</td>
-										<td>{{ $ticket->code_area }}</td>
-										<td>{{ $ticket->level->name }}</td>
-										<td>{{ $ticket->user->name }}</td>
-										<td>{{ $ticket->name }}</td>
+										<td>{{ $ticket->code_area}}</td>
+										<td>{{ $ticket->level_name }}</td>
+										<td>{{ $ticket->applicant_name }}</td>
+										<td>{{ $ticket->patio_name }}</td>
 										<td>{{ $ticket->incident_date->formatLocalized('%A %d %B %Y')}}</td>
 										<td>{{ $ticket->created_at->formatLocalized('%A %d %B %Y')}}</td>
 
 										<td>@if($ticket->code_id==2 || $ticket->code_id==3 )Finalizado @else {{$ticket->created_at->diffForHumans()}} @endif </td>
 										
-										<td>{{ $ticket->code->name }}</td>
+										<td>{{ $ticket->code_name }}</td>
 										<td>
 										@if(auth()->user()->is_ope && $ticket->file=='/')	
 											<a href="{{ route('tickets.edit',$ticket->id) }}" title="Subir archivo" class="btn  btn-sm btn-primary">

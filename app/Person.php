@@ -9,4 +9,11 @@ class Person extends Model
 	protected $table="people";
 	
 	protected $fillable=['name','firsName','LastName','identity_card','issued'];
+
+	public function getFullNameAttribute()
+	{
+	  return $this->attributes['firstName'].' '.
+			 $this->attributes['lastName'].' '.
+			 $this->attributes['name'];
+	}  
 }

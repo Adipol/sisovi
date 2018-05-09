@@ -32,7 +32,7 @@
 							<select name="area_id" class="form-control">
 							 	 	<option value="">Seleccione Area</option>
 							  	@foreach($areas as $id => $area)
-									<option {{  old('area_id') === $id ? 'selected' : '' }} value="{{ $id }}">{{ $area }}</option>
+									<option {{  (int) old('area_id') === $id ? 'selected' : '' }} value="{{ $id }}">{{ $area }}</option>
 								@endforeach
 							</select>
 						 </div>
@@ -75,11 +75,11 @@
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Conductor</label>
-							<input type="text" name="driver" class="form-control">{{ old ('driver') }}</input>
+							<input type="text" name="driver_id" class="form-control">{{ old ('driver_id') }}</input>
 					    </div>
 						<div class="form-group col-12 col-md-6">
-								<label for="">Anfitrión</label>
-								<input type="text" name="host" class="form-control">{{ old ('host') }}</input>
+							<label for="">Anfitrión</label>
+							<input type="text" name="host_id" class="form-control">{{ old ('host_id') }}</input>
 						</div>
 					</div>
 						<div class="form-group">
