@@ -71,7 +71,7 @@
 										<td>{{ $ticket->code_area }}</td>
 										<td>{{ $ticket->level->name }}</td>
 										<td>{{ $ticket->user->name }}</td>
-										<td>{{ $ticket->bus->patio->name }}</td>
+										<td>{{ $ticket->name }}</td>
 										<td>{{ $ticket->incident_date->formatLocalized('%A %d %B %Y')}}</td>
 										<td>{{ $ticket->created_at->formatLocalized('%A %d %B %Y')}}</td>
 

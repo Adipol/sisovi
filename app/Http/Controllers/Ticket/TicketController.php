@@ -25,9 +25,8 @@ use App\User;
 class TicketController extends Controller
 {
 	 public function index(){
-		$tickets=Ticket::with('bus.patio','level','code','user')->where('code_id','<>',3)->paginate(15);
-	
-		return view('tickets.index')->with(compact('tickets')); 
+		$tickets=Ticket::join('patios','tickets.patio','=','patios.id')->with('bus','level','code','user')->where('code_id','<>',3)->paginate(15);
+		return view('tickets.index')->with(compact('tickets'));
 	 }
 
 	 public function create(){
@@ -87,9 +86,11 @@ class TicketController extends Controller
 	 }
 
 	 public function edit($id){
-		$ticket=Ticket::where('id',$id)->with('bus.patio','level','code','user')->where('code_id','<>',3)->first();
-
-		return view('tickets.edit')->with(compact('ticket'));
+		$ticket=Ticket::where('id',$id)->with('bus','level','code','user')->where('code_id','<>',3)->first();
+		$patio_id=$ticket->patio;
+		$patio=Patio::where('id',$patio_id)->pluck('name')->first();
+	
+		return view('tickets.edit')->with(compact('ticket','patio'));
 	 }
 
 	 public function update(TicketUpdateRequest $request, $id){

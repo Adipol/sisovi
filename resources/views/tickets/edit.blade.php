@@ -63,11 +63,11 @@
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Conductor</label>
-							<input type="text" name="driver" class="form-control"  value="{{ $ticket->driver }}" readonly >
+							<input type="text" name="driver" class="form-control"  value="{{ $ticket->driver_id }}" readonly >
 						</div>
 						<div class="form-group col-12 col-md-6">
 							<label for="">Anfitrión</label>
-							<input type="text" name="host" class="form-control"  value="{{ $ticket->host }}" readonly >
+							<input type="text" name="host" class="form-control"  value="{{ $ticket->host_id }}" readonly >
 						</div>
 					</div>
 

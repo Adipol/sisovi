@@ -16,8 +16,8 @@ class CreateTicketsTable extends Migration
 			
 			$table->date('incident_date');//fecha de incidente
 
-			$table->string('driver');    //conductor
-			$table->string('host');      //anfitrion
+			$table->Integer('driver_id');    //conductor
+			$table->Integer('host_id');      //anfitrion
 
 			$table->text('applicant_obs');// obs solicitante
 			$table->text('operational_obs')->nullable();//obs operacional

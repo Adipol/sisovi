@@ -24,8 +24,8 @@ class TicketsTableSeeder extends Seeder
 			'area_id'=>1,
 			'patio'=>1,
 			'ucm'=>1,
-			'driver'=>'carlos guerra',
-			'host'=>'ivone peredo'
+			'driver_id'=>1,
+			'host_id'=>2
 		]);
 		Ticket::create([
 			'code_area'=>'1',
@@ -39,8 +39,8 @@ class TicketsTableSeeder extends Seeder
 			'area_id'=>1,
 			'patio'=>1,
 			'ucm'=>1,
-			'driver'=>'carlos endara',
-			'host'=>'ivone iturri'
+			'driver_id'=>1,
+			'host_id'=>2
 		]);
     }
 }
