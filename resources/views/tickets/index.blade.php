@@ -39,20 +39,20 @@
 
 					<div class="table-responsive">  
 						<table class="table table-hover table-striped">
-								<thead class="thead-light">
-									<tr>
-									<th>#</th>
-									<th>Código de Ticket</th>
-									<th>Grado</th>
-									<th>Solicitante</th>
-									<th>Patio</th>
-									<th>Fecha de Incidente</th>
-									<th>Fecha de Solicitud</th>
-									<th>Demora de Ticket</th>
-									<th>Estado de Ticket</th>
-									<th width="130px">Opción</th>
-									</tr>
-								</thead>
+							<thead class="thead-light">
+								<tr>
+								<th>#</th>
+								<th>Código de Ticket</th>
+								<th>Grado</th>
+								<th>Solicitante</th>
+								<th>Patio</th>
+								<th>Fecha de Incidente</th>
+								<th>Fecha de Solicitud</th>
+								<th>Demora de Ticket</th>
+								<th>Estado de Ticket</th>
+								<th width="130px">Opción</th>
+								</tr>
+							</thead>
 								<tbody>
 									@forelse ($tickets as $key=>$ticket)
 									<tr @if($ticket->level->name=='Normal' && $ticket->code_id==2) 

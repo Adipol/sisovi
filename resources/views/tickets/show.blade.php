@@ -43,7 +43,7 @@
 		
 						<div class="form-group col-12 col-md-6">
 							<label>Patio</label>
-							<input type="text" name="patio_id" class="form-control"  value="{{ $ticket->bus->patio->name }}" readonly>
+							<input type="text" name="patio_id" class="form-control"  value="{{ $patio->name }}" readonly>
 						</div>
 					</div>
 

@@ -80,15 +80,16 @@ class TicketController extends Controller
 	 }
 
 	 public function show($id){
-		$ticket=Ticket::where('id',$id)->with('bus.patio','level','code','user')->first();
-
-		return view('tickets.show')->with(compact('ticket'));
+		$ticket=Ticket::where('id',$id)->with('bus','level','code','user')->where('code_id','<>',3)->first();
+		$patio_id=$ticket->patio;
+		$patio=Patio::where('id',$patio_id)->first();
+		return view('tickets.show')->with(compact('ticket','patio'));
 	 }
 
 	 public function edit($id){
 		$ticket=Ticket::where('id',$id)->with('bus','level','code','user')->where('code_id','<>',3)->first();
 		$patio_id=$ticket->patio;
-		$patio=Patio::where('id',$patio_id)->pluck('name')->first();
+		$patio=Patio::where('id',$patio_id)->first();
 	
 		return view('tickets.edit')->with(compact('ticket','patio'));
 	 }
