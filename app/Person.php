@@ -16,4 +16,16 @@ class Person extends Model
 			 $this->attributes['lastName'].' '.
 			 $this->attributes['name'];
 	}  
+
+	public function setFirstNameAttribute($value){
+        $this->attributes['firstName'] = ucfirst($value);
+	}
+
+	public function setLastNameAttribute($value){
+        $this->attributes['lastName'] = ucfirst($value);
+	}
+
+	public function setNameAttribute($value){
+        $this->attributes['name'] = ucfirst($value);
+	}
 }

@@ -45,8 +45,9 @@ class TicketController extends Controller
 		 $buses     = Bus::pluck('code','id');
 		 $patios    = Patio::pluck('name','id');
 		 $levels    = Level::pluck('name','id');
+		 $people    = Person::orderBy('firstName')->get(); 
 		 
-		 return view('tickets.create')->with(compact('areas','applicant','buses','patios','levels'));
+		 return view('tickets.create')->with(compact('areas','applicant','buses','patios','levels','people'));
 	 }
 
 	 public function store(TicketStoreRequest $request){

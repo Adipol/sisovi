@@ -67,6 +67,8 @@ Route::namespace('Ticket')->group(function () {
 			Route::get('/tickets/{id}/restore','TicketController@restore')->name('tickets.restore');
 			Route::get('/tickets/{file}/download','TicketController@download')->name('tickets.download');
 			Route::get('/tickets/{id}/finished','TicketController@finished')->name('tickets.finished');
+			Route::get('/people/create','PersonController@create')->name('people.create');
+			Route::post('/people/store','PersonController@store')->name('people.store');			
 		});	
 	});
 });
