@@ -54,7 +54,7 @@
 					</div>
 					<div class="row">
 						<div class="form-group col-12 col-md-12">
-							<button type="button" class="btn btn-block btn-sm btn-primary" data-toggle="modal" data-target="#myModal" id="open">
+							<button type="button" class="btn btn-block btn-sm btn-primary" data-toggle="modal" data-target="#SignUp" id="open">
 								<i class="far fa-user"></i> Ingresar datos
 							</button>
 						</div>
@@ -122,7 +122,7 @@
 
 <!-- Modal -->
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="SignUp" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="alert alert-danger" style="display:none"></div>
@@ -133,31 +133,52 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="{{ url('people/store') }}" method="POST" id="form">
+
+				<form action="{{ url('people/store') }}" method="POST" id="Register">
 					{{csrf_field()}}
+					<div id="success-msg" class="hide">
+						<div class="alert alert-info alert-dismissible fade in" role="alert">
+							<strong>Success!</strong> 
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="">Primer Apellido</label>
-						<input type="text" name="firs6tName" class="form-control" id="firstName">
+						<input type="text" name="firstName" class="form-control" id="firstName">
+						<span class="text-danger">
+							<strong id="firstName-error"></strong>
+						</span>
 					</div>
 					<div class="form-group">
 						<label for="">Segundo Apellido</label>
 						<input type="text" name="lastName" class="form-control" id="lastName">
+						<span class="text-danger">
+							<strong id="lastName-error"></strong>
+						</span>
 					</div>
 					<div class="form-group">
 						<label for="">Nombres</label>
 						<input type="text" name="name" class="form-control" id="name">
+						<span class="text-danger">
+							<strong id="name-error"></strong>
+						</span>
 					</div>
 					<div class="form-group">
 							<label for="">Cedula de identidad</label>
 							<input type="text" name="identity_card" class="form-control" id="identity_card">
+							<span class="text-danger">
+                                <strong id="identity_card-error"></strong>
+                            </span>
 					</div>
  					<div class="form-group">
 							<label for="">Expedido</label>
 							<input type="text" name="issued" class="form-control" id="issued">
+							<span class="text-danger">
+                                <strong id="issued-error"></strong>
+                            </span>
 					</div>
 					<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-							<button type="button" class="btn btn-primary" id="ajaxSubmit">Guardar</button>
+							<button type="button" class="btn btn-primary" id="submitForm">Guardar</button>
 					</div> 
 				</form>
 			</div>
@@ -168,44 +189,52 @@
 @endsection 
 
 @push('scripts')
-<script>
-	jQuery(document).ready(function(){
-	   jQuery('#ajaxSubmit').click(function(e){
-		  e.preventDefault();
-		  $.ajaxSetup({
-			 headers: {
-				 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-			 }
-		 });
-		  jQuery.ajax({
-			 url: "{{ url('people/store') }}",
-			 method: 'post',
-			 data: {
-					firstName: jQuery('#firstName').val(),
-					lastName: jQuery('#lastName').val(),
-					name: jQuery('#name').val(),
-					identity_card: jQuery('#identity_card').val(),
-					issued: jQuery('#issued').val(),
-			 },
-			 success: function(result){
-				 if(result.errors)
-				 {
-					 jQuery('.alert-danger').html('');
+<script type="text/javascript">
 
-					 jQuery.each(result.errors, function(key, value){
-						 jQuery('.alert-danger').show();
-						 jQuery('.alert-danger').append('<li>'+value+'</li>');
-					 });
-				 }
-				 else
-				 {
-					 jQuery('.alert-danger').hide();
-					 $('#open').hide();
-					 $('#myModal').modal('hide');
-				 }
-			 }});
-		  });
-	   });
+$(document).on('click', '#submitForm', function(){
+	var registerForm = $("#Register");
+	var formData = registerForm.serialize();
+	$( '#firstName-error' ).html( "" );
+	$( '#lastName-error' ).html( "" );
+	$( '#name-error' ).html( "" );
+	$( '#identity_card-error' ).html( "" );
+	$( '#issued-error' ).html( "" );
+	
+	$.ajax({
+		url:'/people/store',
+		type:'POST',
+		data:formData,
+		success:function(data) {
+			console.log(data);
+			if(data.errors) {
+				if(data.errors.firstName){
+					$( '#firstName-error' ).html( data.errors.firstName[0] );
+				}
+				if(data.errors.lastName){
+					$( '#lastName-error' ).html( data.errors.lastName[0] );
+				}
+				if(data.errors.name){
+					$( '#name-error' ).html( data.errors.name[0] );
+				}
+				if(data.errors.identity_card){
+					$( '#identity_card-error' ).html( data.errors.identity_card[0] );
+				}
+				if(data.errors.issued){
+					$( '#issued-error' ).html( data.errors.issued[0] );
+				}
+				
+			}
+			if(data.success) {
+				$('#success-msg').removeClass('hide');
+				setInterval(function(){ 
+					$('#SignUp').modal('hide');
+					$('#success-msg').addClass('hide');
+				}, 3000);
+			}
+		},
+	});
+});
+
  </script>
 @endpush
 
