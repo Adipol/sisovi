@@ -16,15 +16,15 @@
 				@endif
 
 				<div class="card-body" >
-		  		{!! Form::model($ticket,['route'=>['tickets.update',$ticket->id],'method'=>'POST'])!!}
+					{!! Form::model($ticket,['route'=>['tickets.update',$ticket->id],'method'=>'POST'])!!}
 					<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Codigo de Ticket</label>
 							<input type="text" name="cod_name" class="form-control"  value="{{ $ticket->code_area }}" readonly>
 						</div>
 					</div>
-					
-					<div class="row">
+						
+						<div class="row">
 						<div class="form-group col-12 col-md-6">
 							<label for="">Solicitante</label>
 							<input type="text" name="applicant_id" class="form-control"  value="{{ $ticket->user->name }}" readonly>
