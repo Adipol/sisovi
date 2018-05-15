@@ -38,7 +38,7 @@ class PersonController extends Controller
 		$person->save();
 		
 		return Response::json(['success'=>'1']);
-		//return $this->response('Lesson created successfully');
+
 	   }
 	   return Response::json(['erros'=>$validator->errors()]);
 		
