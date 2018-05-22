@@ -5,28 +5,30 @@ namespace App\Http\Controllers\Ticket;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonStoreRequest;
-use Validator;
-use Illuminate\Support\Facades\Input;
 //use Illuminate\Http\Response;
-
-use Response;
 use App\Person;
 
 class PersonController extends Controller
 {
-    public function store(Request $request){
-		
-		$validator=Validator::make($request->all(),[
-			'name'          => 'required',
-			'firstName'     => 'required',
-			'lastName'      => 'required',
-			'identity_card' => 'required',
-			'issued'        => 'required'
-		]);
-		
-		$input=$request->all();
+	public function store(Request $request)
+	{	
+		$messages = [
+			'name.required' => 'Necesita ingersar el nombre!',
+		];
 
-       if($validator->passes()){
+		$validator=\Validator::make($request->all(),[
+			'name'=>'required',
+			'firstName'=>'required',
+			'LastName'=>'min:3',
+			'identity_card'=>'required',
+			'issued'=>'required',
+		],$messages);
+		
+        if ($validator->fails())
+        {
+            return response()->json(['errors'=>$validator->errors()->all()]);
+        }
+
 		$person                = new Person();
 		$person->firstName     = $request->get('firstName');
 		$person->lastName      = $request->get('lastName');
@@ -36,13 +38,8 @@ class PersonController extends Controller
 		$ucm                   = auth()->user();
 		$person->ucm           = $ucm->id;
 		$person->save();
-		
-		return Response::json(['success'=>'1']);
 
-	   }
-	   return Response::json(['erros'=>$validator->errors()]);
-		
-
+		return response()->json(['success'=>'Data is successfully added']);
 	
 	}
 }
