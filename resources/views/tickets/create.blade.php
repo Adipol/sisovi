@@ -200,8 +200,8 @@
                   	else
                   	{ 
                   		jQuery('.alert-danger').hide();
-                  		//$('#open').hide();
                   		$('#myModal').modal('hide');
+						window.location = '{{ url("/tickets/create") }}';
                   	}
                   }});
                });

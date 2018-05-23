@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonStoreRequest;
 //use Illuminate\Http\Response;
 use App\Person;
+use Illuminate\View\View;
+use Illuminate\Http\Response;
 
 class PersonController extends Controller
 {
@@ -40,7 +42,7 @@ class PersonController extends Controller
 		$ucm                   = auth()->user();
 		$person->ucm           = $ucm->id;
 		$person->save();
-		
-		return response()->json(['success'=>'Data is successfully added']);
+
+		return response()->json($person);
 	}
 }
