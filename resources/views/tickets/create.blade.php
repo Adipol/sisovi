@@ -126,7 +126,7 @@
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="alert alert-danger" style="display:none"></div>
+			
 			<div class="modal-header">
 				<h5 class="modal-title">Registrar Persona</h5>	
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -134,6 +134,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
+					<div class="alert alert-danger" style="display:none"></div>
 					<div class="form-group">
 						<label for="">Primer Apellido</label>
 						<input type="text" name="firstName" class="form-control" id="firstName">
@@ -170,8 +171,8 @@
       <script>
          jQuery(document).ready(function(){
             jQuery('#ajaxSubmit').click(function(e){
-               e.preventDefault();
-               $.ajaxSetup({
+                e.preventDefault();
+                $.ajaxSetup({
                   headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                   }
@@ -197,9 +198,9 @@
                   		});
                   	}
                   	else
-                  	{
+                  	{ 
                   		jQuery('.alert-danger').hide();
-                  		$('#open').hide();
+                  		//$('#open').hide();
                   		$('#myModal').modal('hide');
                   	}
                   }});

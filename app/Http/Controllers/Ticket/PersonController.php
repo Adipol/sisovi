@@ -13,14 +13,16 @@ class PersonController extends Controller
 	public function store(Request $request)
 	{	
 		$messages = [
-			'name.required' => 'Necesita ingersar el nombre!',
+			'firstName.required' => 'Es necesario ingresar el primer apellido.',
+			'name.required' => 'Es necesario ingresar el nombre.',
+			'identity_card.required' => 'Es necesario ingresar el numero  de carnet.',
+			'issued.required' => 'Es necesario ingresar expedido.',
 		];
 
 		$validator=\Validator::make($request->all(),[
-			'name'=>'required',
-			'firstName'=>'required',
-			'LastName'=>'min:3',
-			'identity_card'=>'required',
+			'firstName'=>'required|min:3|max:20|',
+			'name'=>'required|min:3|max:20|',
+			'identity_card'=>'required|min:5|max:20|unique:people,identity_card',
 			'issued'=>'required',
 		],$messages);
 		
@@ -38,8 +40,7 @@ class PersonController extends Controller
 		$ucm                   = auth()->user();
 		$person->ucm           = $ucm->id;
 		$person->save();
-
+		
 		return response()->json(['success'=>'Data is successfully added']);
-	
 	}
 }

@@ -14,8 +14,8 @@ class UserStoreRequest extends FormRequest
 
     public function rules(){
         return [
-				'name' => 'required|min:3|max:255|unique:users,name',
-				'email' => 'required|string|email|max:255|unique:users,email',
+				'name' => 'required|min:3|max:20|unique:users,name',
+				'email' => 'required|string|email|max:30|unique:users,email',
 				'password' => 'min:6',
 				'rol_id'=>'required'		
 		];
@@ -25,7 +25,7 @@ class UserStoreRequest extends FormRequest
 		return [
 			'name.required'=>'Es necesario ingresar el nombre del usuario.',
 			'name.unique'=>'El nombre de usuario existe.',
-			'name.max'=>'El nombre es deamsiado extenso.',
+			'name.max'=>'El nombre es demasiado extenso.',
 			'name.min'=>'El nombre es demasiado reducido.',
 			'email.required'=>'Es necesario ingresar el correo electronico.',
 			'email.email'=>'Ingrese un correo electronico valido.',
