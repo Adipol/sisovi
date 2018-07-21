@@ -51,18 +51,18 @@ class TicketController extends Controller
 	 }
 
 	 public function store(TicketStoreRequest $request){
-		 $ticket= new Ticket();
-		 $operationals=User::where('rol_id','=',3)->pluck('email');
+		 $ticket       = new Ticket();
+		 $operationals = User::where('rol_id','=',3)->pluck('email');
 		
-		 $ticket->applicant_id=auth()->user()->id;
-		 $ticket->incident_date=$request->input('incident_date');
+		 $ticket->applicant_id  = auth()->user()->id;
+		 $ticket->incident_date = $request->input('incident_date');
 		 
-		 $ticket->applicant_obs=$request->input('applicant_obs');
-		 $ticket->patio=$request->input('patio_id');
-		 $ticket->level_id=$request->input('level_id');
-		 $ticket->bus_id=$request->input('bus_id');
-		 $ticket->area_id=$request->input('area_id');
-		 $var1=$request->input('area_id');
+		 $ticket->applicant_obs = $request->input('applicant_obs');
+		 $ticket->patio         = $request->input('patio_id');
+		 $ticket->level_id      = $request->input('level_id');
+		 $ticket->bus_id        = $request->input('bus_id');
+		 $ticket->area_id       = $request->input('area_id');
+		 $var1                  = $request->input('area_id');
 
 		 $vart=Ticket::where('area_id','=',$var1)->count();
 
@@ -147,8 +147,7 @@ class TicketController extends Controller
                         'username' => 'noenjaulado',
                         'password' => '123456',
 						'port'     => '21',
-						'timeout'  => '30', 
-                         
+						'timeout'  => '30',                         
 		  ]);
 			
 		$filecontent = $ftp->get($file); // read file content 
